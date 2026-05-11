@@ -1,37 +1,46 @@
-HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+# ==================================================
+# Application Properties (민감 정보)
+# ==================================================
+03-springboot-ecommerce/eCommerce-springboot/src/main/resources/application.properties
+03-springboot-ecommerce/eCommerce-springboot/src/main/resources/application-local.properties
+03-springboot-ecommerce/eCommerce-springboot/src/main/resources/application-secret.properties
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+# ==================================================
+# Example Properties (Git에는 포함)
+# ==================================================
+!03-springboot-ecommerce/eCommerce-springboot/src/main/resources/application-example.properties
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+# ==================================================
+# Logs
+# ==================================================
+logs/
+*.log
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+# ==================================================
+# Upload Files
+# ==================================================
+uploads/
+03-springboot-ecommerce/eCommerce-springboot/uploads/
 
-### VS Code ###
-.vscode/
+# ==================================================
+# Environment Files
+# ==================================================
+.env
+*.env
+
+# ==================================================
+# Oracle Wallet / 인증서
+# ==================================================
+Wallet_*/
+*.sso
+*.ora
+*.p12
+*.jks
+ewallet.p12
+cwallet.sso
+
+# ==================================================
+# OS Files
+# ==================================================
+.DS_Store
+Thumbs.db
