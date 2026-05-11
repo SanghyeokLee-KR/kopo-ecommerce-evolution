@@ -12,3 +12,6 @@ logs/*
 
 uploads/*
 !uploads/.gitkeep
+03-springboot-ecommerce/eCommerce-springboot/src/main/resources/application.properties
+03-springboot-ecommerce/eCommerce-springboot/src/main/resources/application-local.properties
+03-springboot-ecommerce/eCommerce-springboot/src/main/resources/application-secret.properties
