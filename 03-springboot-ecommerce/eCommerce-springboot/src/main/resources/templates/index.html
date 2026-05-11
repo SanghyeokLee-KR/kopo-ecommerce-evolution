@@ -1,13 +1,290 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>DINK GALLERY | Fine Art Photography</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
-    <h1>hello world</h1>
+
+<div class="announcement">
+    <div class="marquee">
+        <div class="marquee-content">
+            <span>ORIGINAL FINE ART PRINTS · WORLDWIDE SHIPPING</span>
+            <span>CAPTURE THE MOMENT · DINK GALLERY OPEN</span>
+        </div>
+        <div class="marquee-content">
+            <span>ORIGINAL FINE ART PRINTS · WORLDWIDE SHIPPING</span>
+            <span>CAPTURE THE MOMENT · DINK GALLERY OPEN</span>
+        </div>
+    </div>
+</div>
+
+<header class="header">
+    <button class="hamburger" id="menuBtn">
+        <span></span><span></span>
+    </button>
+    <div class="logo">DINK GALLERY</div>
+    <nav class="pc-nav">
+        <a href="#">GALLERY</a><a href="#">PRINTS</a><a href="#">FRAME</a><a href="#">ABOUT</a>
+    </nav>
+    <div class="pc-actions">
+        <a href="#">SEARCH</a><a href="#">LOGIN</a>
+        <button class="cart-btn">CART <span class="cart-count">0</span></button>
+    </div>
+    <button class="cart-btn mobile-cart">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span class="cart-count">0</span>
+    </button>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+    <a href="#">GALLERY <span>전체 작품</span></a>
+    <a href="#">PRINTS <span>사진 구매</span></a>
+    <a href="#">FRAME <span>액자 제작</span></a>
+    <a href="#">ABOUT <span>작가 소개</span></a>
+</nav>
+
+<section class="hero">
+    <div class="hero-slides">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1600&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1495344517868-8ebaf0a2044a?w=1600&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1600&q=80')"></div>
+    </div>
+    <div class="hero-content">
+        <p>FINE ART PHOTOGRAPHY</p>
+        <h1>MOMENTS<br>IN TIME</h1>
+        <a href="#products">EXPLORE GALLERY</a>
+    </div>
+</section>
+
+<section class="section" id="products">
+    <div class="section-head">
+        <span>ORIGINAL PRINTS</span>
+        <h2>Shop The Art</h2>
+    </div>
+
+    <div class="category-slider">
+        <button class="category-chip active" data-target="all">ALL</button>
+        <button class="category-chip" data-target="landscape">Landscape</button>
+        <button class="category-chip" data-target="street">Street</button>
+        <button class="category-chip" data-target="nature">Nature</button>
+        <button class="category-chip" data-target="bw">B&W</button>
+        <button class="category-chip" data-target="architecture">Architecture</button>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+
+        <article class="product-card" data-category="landscape">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Mountain View">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Limited Edition</p><p class="name">Silent Mountain</p><div class="price-row">₩ 45,000</div></div>
+        </article>
+        <article class="product-card" data-category="landscape">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80" alt="Foggy Forest">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Morning Mist</p><div class="price-row">₩ 35,000</div></div>
+        </article>
+        <article class="product-card" data-category="landscape">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1506744626753-dba75c2a78ec?w=600&q=80" alt="Lake">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Limited Edition</p><p class="name">Crystal Lake</p><div class="price-row">₩ 45,000</div></div>
+        </article>
+        <article class="product-card" data-category="landscape">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?w=600&q=80" alt="Snow Mountain">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Winter Peaks</p><div class="price-row">₩ 35,000</div></div>
+        </article>
+
+        <article class="product-card" data-category="street">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&q=80" alt="City Street">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Urban Lights</p><div class="price-row">₩ 35,000</div></div>
+        </article>
+        <article class="product-card" data-category="street">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&q=80" alt="Tokyo Neon">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Limited Edition</p><p class="name">Midnight in Tokyo</p><div class="price-row">₩ 55,000</div></div>
+        </article>
+        <article class="product-card" data-category="street">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&q=80" alt="New York Cab">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Yellow Cab</p><div class="price-row">₩ 35,000</div></div>
+        </article>
+        <article class="product-card" data-category="street">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80" alt="Cityscape">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Concrete Jungle</p><div class="price-row">₩ 35,000</div></div>
+        </article>
+
+        <article class="product-card" data-category="nature">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=600&q=80" alt="Leaf Texture">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Monstera</p><div class="price-row">₩ 30,000</div></div>
+        </article>
+        <article class="product-card" data-category="nature">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&q=80" alt="Fields">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Golden Hour</p><div class="price-row">₩ 30,000</div></div>
+        </article>
+        <article class="product-card" data-category="nature">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Ocean Waves">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Limited Edition</p><p class="name">Pacific Waves</p><div class="price-row">₩ 50,000</div></div>
+        </article>
+        <article class="product-card" data-category="nature">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1497561836812-4c91038ea7a1?w=600&q=80" alt="Desert">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Dunes</p><div class="price-row">₩ 30,000</div></div>
+        </article>
+
+        <article class="product-card" data-category="bw">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1495344517868-8ebaf0a2044a?w=600&q=80" alt="BW Window">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Limited Edition</p><p class="name">Shadows</p><div class="price-row">₩ 55,000</div></div>
+        </article>
+        <article class="product-card" data-category="bw">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=600&q=80" alt="BW Mountain">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Noir Peaks</p><div class="price-row">₩ 35,000</div></div>
+        </article>
+        <article class="product-card" data-category="bw">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1454117096348-e4abbeba002c?w=600&q=80" alt="BW River">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Silent Water</p><div class="price-row">₩ 35,000</div></div>
+        </article>
+        <article class="product-card" data-category="bw">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1469504512102-900f29606341?w=600&q=80" alt="BW Architecture">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Limited Edition</p><p class="name">Lines & Curves</p><div class="price-row">₩ 55,000</div></div>
+        </article>
+
+        <article class="product-card" data-category="architecture">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="Modern Building">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Glass Tower</p><div class="price-row">₩ 35,000</div></div>
+        </article>
+        <article class="product-card" data-category="architecture">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=80" alt="Interior">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Minimal Space</p><div class="price-row">₩ 35,000</div></div>
+        </article>
+        <article class="product-card" data-category="architecture">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=600&q=80" alt="Bridge">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Limited Edition</p><p class="name">Golden Gate</p><div class="price-row">₩ 50,000</div></div>
+        </article>
+        <article class="product-card" data-category="architecture">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1481026469463-66327c86e544?w=600&q=80" alt="Classic Arch">
+                <button class="quick-add">ADD TO CART</button>
+            </div>
+            <div class="product-info"><p class="brand">Open Edition</p><p class="name">Rome Arches</p><div class="price-row">₩ 35,000</div></div>
+        </article>
+    </div>
+</section>
+
+<section class="story">
+    <div class="story-wrap">
+        <div class="story-image">
+            <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1000&q=80" alt="Photographer Camera">
+        </div>
+        <div class="story-text">
+            <span>ABOUT PHOTOGRAPHER</span>
+            <h2>시선을 담다,<br>순간을 소장하다</h2>
+            <p>
+                카메라 렌즈 너머로 마주한 특별한 순간들을 인화지에 담아냅니다.
+                방 안의 작은 갤러리, 당신의 일상에 잔잔한 영감을 불어넣어 줄 오리지널 파인 아트 프린트(Fine Art Print)를 만나보세요.
+            </p>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-top">
+        <div class="newsletter">
+            <h3>Join the Newsletter</h3>
+            <p>신작 발표, 전시 일정 및 특별한 혜택을 가장 먼저 받아보세요.</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Email Address">
+                <button type="button">SUBSCRIBE</button>
+            </div>
+        </div>
+
+        <div class="footer-links-group">
+            <div class="footer-column">
+                <h4>Shop</h4>
+                <a href="#">All Prints</a>
+                <a href="#">Limited Editions</a>
+                <a href="#">Frames</a>
+            </div>
+            <div class="footer-column">
+                <h4>About</h4>
+                <a href="#">The Artist</a>
+                <a href="#">Exhibitions</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <a href="#">Shipping & Returns</a>
+                <a href="#">FAQ</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-copy">
+            &copy; 2026 DINK GALLERY. All rights reserved.
+        </div>
+        <div class="footer-socials">
+            <a href="#">INSTAGRAM</a>
+            <a href="#">TWITTER</a>
+            <a href="#">BEHANCE</a>
+        </div>
+    </div>
+</footer>
+
+<script th:src="@{/js/index.js}"></script>
 </body>
 </html>
