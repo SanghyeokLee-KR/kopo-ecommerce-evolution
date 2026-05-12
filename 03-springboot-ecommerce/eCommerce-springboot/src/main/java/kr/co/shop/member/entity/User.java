@@ -1,7 +1,7 @@
 package kr.co.shop.member.entity;
 
 import jakarta.persistence.*;
-import kr.co.shop.common.entity.BaseEntity;
+import kr.co.shop.common.entitiry.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

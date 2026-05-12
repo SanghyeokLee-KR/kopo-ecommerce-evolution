@@ -3,6 +3,7 @@ package kr.co.shop.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,6 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 // 개발 초기 단계에서는 모든 요청을 허용한다.
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     // 모든 URL에 대해 인증 없이 접근 가능하도록 설정

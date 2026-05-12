@@ -1,4 +1,4 @@
-package kr.co.shop.member.dto.request;
+package kr.co.shop.member.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -9,10 +9,12 @@ import kr.co.shop.member.entity.UserRole;
 import kr.co.shop.member.entity.UserStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
-public class UserJoinRequest {
+public class UserDto {
 
     @NotBlank(message = "아이디를 입력해주세요.")
     @Size(min = 5, max = 15, message = "아이디는 5~15자리로 입력해주세요.")
