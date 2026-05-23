@@ -1,0 +1,56 @@
+[
+  {
+    "userId": "admin",
+    "userName": "관리자",
+    "userPassword": "admin",
+    "userPhoneNumber": "00000000000",
+    "userEmail": "admin",
+    "userStatus": "정상",
+    "userRole": "관리자"
+  },
+  {
+    "userId": "dltkdgur",
+    "userName": "이상혁",
+    "userPassword": "rladsf23!",
+    "userPhoneNumber": "00000000000",
+    "userEmail": "kljl6773@gmail.com",
+    "userStatus": "정상",
+    "userRole": "일반회원"
+  },
+  {
+    "userId": "SuperUser",
+    "userName": "유저",
+    "userPassword": "user!",
+    "userPhoneNumber": "00000000000",
+    "userEmail": "user",
+    "userStatus": "탈퇴요청",
+    "userRole": "일반회원"
+  },
+  {
+    "userId": "qwer4405",
+    "userName": "김민혁",
+    "userPassword": "dltkd0051!A",
+    "userPhoneNumber": "01065322312",
+    "userEmail": "kljl52@gmail.com",
+    "userStatus": "가입요청",
+    "userRole": "일반회원"
+  },
+  {
+    "userId": "user0001",
+    "userName": "user",
+    "userPassword": "user0051!A",
+    "userPhoneNumber": "01056225533",
+    "userEmail": "user@test.com",
+    "userStatus": "가입요청",
+    "userRole": "일반회원"
+  },
+  {
+    "userId": "dltkdgur4540",
+    "userName": "잇아혁",
+    "userPassword": "dl021021!A",
+    "userPhoneNumber": "01054252232",
+    "userEmail": "kljl2352@gmail.com",
+    "userStatus": "가입요청",
+    "userRole": "일반회원"
+  }
+]
