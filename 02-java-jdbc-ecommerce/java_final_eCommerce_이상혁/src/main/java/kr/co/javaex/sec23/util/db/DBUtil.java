@@ -9,6 +9,11 @@ import java.sql.SQLException;
 
 public class DBUtil {
 
+    // DB 접속 정보는 환경변수에서 읽어옵니다. 실행 전 본인 환경값으로 설정하세요.
+    //   DB_URL      : 접속 URL  (예: jdbc:oracle:thin:@본인TNS별칭)
+    //   DB_USER     : DB 계정
+    //   DB_PASSWORD : DB 비밀번호
+    //   TNS_ADMIN   : Oracle Wallet 폴더 경로
     private static final String URL = getEnv("DB_URL");
     private static final String USER = getEnv("DB_USER");
     private static final String PASSWORD = getEnv("DB_PASSWORD");
