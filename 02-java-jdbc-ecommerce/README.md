@@ -40,7 +40,9 @@
 - 카테고리는 `PARENT_NO`로 대분류·중분류를 자기참조로 표현했습니다.
 - 기본키는 시퀀스(`SEQ_*`)로 채번합니다.
 
-ERD: https://www.erdcloud.com/d/cL5oD5pskmoMnm5K7
+![ERD](diagrams/png/erd.png)
+
+전체 ERD는 [erdcloud](https://www.erdcloud.com/d/cL5oD5pskmoMnm5K7)에서도 볼 수 있습니다.
 
 시간이 부족해 테이블에 외래키와 제약조건은 걸지 못했습니다. 대신 상태값을 자바 enum(`UserStatus`, `ProductStatus`, `OrderStatus`)으로 관리해 무결성을 일부 보완했고, 외래키 추가는 다음 개선 과제로 남겨 뒀습니다.
 
@@ -112,6 +114,21 @@ ORDER BY C.CART_NO
 - 관리자 주문 목록·상세 — `OrderRepository.findAllWithUser` / `findDetailWithUserByOrderNo`, `OrderItemRepository.findWithProductByOrderNo`
 - 상품-카테고리 매핑 목록 — `ProductCategoryMappingRepository.findAllWithNames`
 
+### 존재 확인은 서브쿼리(EXISTS)
+
+하위 카테고리가 있는지, 매핑이 이미 있는지처럼 "있다 / 없다"만 확인하면 되는 경우, 처음에는 `COUNT(*)`로 전체 개수를 센 뒤 0보다 큰지 비교했습니다. 개수가 필요한 게 아니라 한 건만 있으면 되는 것이라, 첫 행에서 멈추는 `EXISTS`로 바꿨습니다.
+
+```sql
+-- 변경 전: 전체 개수를 센다
+SELECT COUNT(*) FROM CATEGORIES WHERE PARENT_NO = ?
+
+-- 변경 후: 한 건이라도 있으면 멈춘다
+SELECT 1 FROM DUAL
+WHERE EXISTS (SELECT 1 FROM CATEGORIES WHERE PARENT_NO = ?)
+```
+
+`CategoryRepository.hasChildren`, `ProductCategoryMappingRepository.existsMapping`에 적용했습니다.
+
 ### Builder 패턴
 
 도메인 객체에 생성자가 여러 개로 늘어나면서 인자 순서를 맞추기 번거롭고 가독성도 떨어졌습니다. 그래서 객체 생성을 Builder로 바꿔, 어떤 값이 들어가는지 한눈에 보이도록 했습니다.
@@ -160,10 +177,38 @@ kr.co.javaex.sec23
    └─ common.enums  상태값 (User / Product / Order)
 ```
 
+계층 구조와 데이터 흐름을 다이어그램으로 정리했습니다.
+
+![계층형 아키텍처](diagrams/png/architecture.png)
+
 ## 앞으로 (3단계)
 
 다음은 Spring Boot로 옮깁니다. 지금 직접 짠 JDBC 코드를 JPA·MyBatis로 대체하고, 로그인과 권한은 Spring Security로 처리할 계획입니다. `controller / service / repository` 구조가 스프링과 거의 같아 옮기는 부담은 크지 않을 것으로 보고 있습니다.
 
-## 작업 기록
+## 설계 과정 (작업 기록)
 
-리팩터링하면서 정리한 노션 기록을 PDF로 첨부했습니다 — [노션 링크 안되면.pdf](java_final_eCommerce_이상혁/노션%20링크%20안되면.pdf). N+1 조회를 JOIN으로 바꾼 과정, service 공통 처리 패턴, ERD 설계 의도 등을 적어 뒀습니다.
+리팩터링하면서 노션에 과정을 기록해 뒀습니다. (PDF 백업: [노션 링크 안되면.pdf](java_final_eCommerce_이상혁/노션%20링크%20안되면.pdf))
+
+<details>
+<summary>ERD를 잡아 간 과정</summary>
+
+먼저 JSON 데이터를 기준으로 모든 테이블에 식별자(번호)를 부여했고,
+
+![식별자를 넣은 ERD](docs/erd-identifiers.png)
+
+한 주문에 여러 상품이 들어가는 문제 때문에 주문/주문상세를 1:N로 분리해 최종 ERD를 정리했습니다.
+
+![최종 ERD](docs/erd-final.png)
+
+</details>
+
+<details>
+<summary>장바구니 N+1 — JOIN을 위해 Cart에 필드 추가</summary>
+
+장바구니 조회를 JOIN 한 번으로 바꾸면서, 상품을 다시 조회하지 않도록 Cart에 상품명·가격·상품ID 세 필드를 더했습니다.
+
+![JOIN 전 Cart](docs/join-cart-1.png)
+
+![필드를 추가한 Cart](docs/join-cart-2.png)
+
+</details>
