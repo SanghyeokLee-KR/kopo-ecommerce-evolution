@@ -138,9 +138,14 @@ public class ProductCategoryMappingRepository {
 
     public boolean existsMapping(Connection con, int productNo, int categoryNo) throws SQLException {
         String sql = """
-                SELECT COUNT(*)
-                FROM PRODUCT_CATEGORY_MAPPING
-                WHERE PRODUCT_NO = ? AND CATEGORY_NO = ?
+                SELECT 1
+                FROM DUAL
+                WHERE EXISTS (
+                    SELECT 1
+                    FROM PRODUCT_CATEGORY_MAPPING
+                    WHERE PRODUCT_NO = ?
+                      AND CATEGORY_NO = ?
+                )
                 """;
 
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -148,13 +153,9 @@ public class ProductCategoryMappingRepository {
             pstmt.setInt(2, categoryNo);
 
             try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt(1) > 0;
-                }
+                return rs.next();
             }
         }
-
-        return false;
     }
 
     public void save(Connection con, ProductCategoryMapping mapping) throws SQLException {

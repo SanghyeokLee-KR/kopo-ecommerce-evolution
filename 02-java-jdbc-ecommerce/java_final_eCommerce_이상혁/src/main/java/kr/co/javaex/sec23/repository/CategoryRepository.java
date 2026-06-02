@@ -182,22 +182,22 @@ public class CategoryRepository {
     // 하위 카테고리 존재 여부 확인
     public boolean hasChildren(Connection con, int parentNo) throws SQLException {
         String sql = """
-                SELECT COUNT(*)
-                FROM CATEGORIES
-                WHERE PARENT_NO = ?
+                SELECT 1
+                FROM DUAL
+                WHERE EXISTS (
+                    SELECT 1
+                    FROM CATEGORIES
+                    WHERE PARENT_NO = ?
+                )
                 """;
 
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setInt(1, parentNo);
 
             try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt(1) > 0;
-                }
+                return rs.next();
             }
         }
-
-        return false;
     }
 
     private Category mapToCategory(ResultSet rs) throws SQLException {
