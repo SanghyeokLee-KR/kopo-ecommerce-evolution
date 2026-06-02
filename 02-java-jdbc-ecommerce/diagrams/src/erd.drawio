@@ -1,0 +1,65 @@
+<mxfile host="Electron">
+  <diagram id="ecommerce-jdbc-erd" name="02_erd">
+    <mxGraphModel dx="1664" dy="991" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1240" pageHeight="760" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;" value="&lt;b style=&#39;font-size:18px;color:#263238&#39;&gt;DB 기반 e-Commerce · ERD&lt;/b&gt;" vertex="1">
+          <mxGeometry height="28" width="760" x="30" y="12" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;align=left;verticalAlign=middle;" value="&lt;span style=&#39;color:#6B7785;font-size:12px&#39;&gt;테이블 7개 · 주문/주문상세 1:N 분리 · 시퀀스 PK · 카테고리 자기참조(PARENT_NO). 외래키 제약은 미적용 — 상태값은 자바 enum으로 관리.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="18" width="1080" x="30" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="t_users" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;" value="&lt;b style=&#39;color:#1565C0;font-size:13px&#39;&gt;USERS&lt;/b&gt; &lt;span style=&#39;color:#6B7785;font-size:10px&#39;&gt;회원&lt;/span&gt;&lt;div style=&#39;font-family:Courier New;font-size:10px;color:#37474F;margin-top:6px;line-height:16px&#39;&gt;&lt;span style=&#39;color:#B0306A;font-weight:bold&#39;&gt;PK&lt;/span&gt; USER_NO&lt;br&gt;USER_ID&lt;br&gt;USER_NAME&lt;br&gt;USER_PASSWORD&lt;br&gt;USER_PHONE&lt;br&gt;USER_EMAIL&lt;br&gt;USER_STATUS&lt;br&gt;USER_ROLE&lt;br&gt;CREATED_AT&lt;/div&gt;" vertex="1">
+          <mxGeometry height="182" width="230" x="470" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="t_carts" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;" value="&lt;b style=&#39;color:#00838F;font-size:13px&#39;&gt;CARTS&lt;/b&gt; &lt;span style=&#39;color:#6B7785;font-size:10px&#39;&gt;장바구니&lt;/span&gt;&lt;div style=&#39;font-family:Courier New;font-size:10px;color:#37474F;margin-top:6px;line-height:16px&#39;&gt;&lt;span style=&#39;color:#B0306A;font-weight:bold&#39;&gt;PK&lt;/span&gt; CART_NO&lt;br&gt;USER_NO&lt;br&gt;PRODUCT_NO&lt;br&gt;QUANTITY&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="220" x="930" y="92" as="geometry" />
+        </mxCell>
+        <mxCell id="t_orders" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;" value="&lt;b style=&#39;color:#D05C17;font-size:13px&#39;&gt;ORDERS&lt;/b&gt; &lt;span style=&#39;color:#6B7785;font-size:10px&#39;&gt;주문&lt;/span&gt;&lt;div style=&#39;font-family:Courier New;font-size:10px;color:#37474F;margin-top:6px;line-height:16px&#39;&gt;&lt;span style=&#39;color:#B0306A;font-weight:bold&#39;&gt;PK&lt;/span&gt; ORDER_NO&lt;br&gt;USER_NO&lt;br&gt;ORDER_STATUS&lt;br&gt;ORDER_DATE&lt;br&gt;TOTAL_PRICE&lt;/div&gt;" vertex="1">
+          <mxGeometry height="116" width="220" x="120" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="t_orderitems" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;" value="&lt;b style=&#39;color:#D05C17;font-size:13px&#39;&gt;ORDER_ITEMS&lt;/b&gt; &lt;span style=&#39;color:#6B7785;font-size:10px&#39;&gt;주문 상세&lt;/span&gt;&lt;div style=&#39;font-family:Courier New;font-size:10px;color:#37474F;margin-top:6px;line-height:16px&#39;&gt;&lt;span style=&#39;color:#B0306A;font-weight:bold&#39;&gt;PK&lt;/span&gt; ORDER_ITEM_NO&lt;br&gt;ORDER_NO&lt;br&gt;PRODUCT_NO&lt;br&gt;ORDER_PRICE&lt;br&gt;QUANTITY&lt;br&gt;ITEM_TOTAL_PRICE&lt;/div&gt;" vertex="1">
+          <mxGeometry height="132" width="240" x="120" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="t_products" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D32;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;" value="&lt;b style=&#39;color:#2E7D32;font-size:13px&#39;&gt;PRODUCTS&lt;/b&gt; &lt;span style=&#39;color:#6B7785;font-size:10px&#39;&gt;상품&lt;/span&gt;&lt;div style=&#39;font-family:Courier New;font-size:10px;color:#37474F;margin-top:6px;line-height:16px&#39;&gt;&lt;span style=&#39;color:#B0306A;font-weight:bold&#39;&gt;PK&lt;/span&gt; PRODUCT_NO&lt;br&gt;PRODUCT_ID&lt;br&gt;PRODUCT_NAME&lt;br&gt;PRODUCT_DESC&lt;br&gt;PRICE&lt;br&gt;STOCK_QTY&lt;br&gt;PRODUCT_STATUS&lt;br&gt;CREATED_AT&lt;/div&gt;" vertex="1">
+          <mxGeometry height="166" width="230" x="510" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="t_mapping" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6A1B9A;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;" value="&lt;b style=&#39;color:#6A1B9A;font-size:12px&#39;&gt;PRODUCT_CATEGORY_MAPPING&lt;/b&gt; &lt;span style=&#39;color:#6B7785;font-size:10px&#39;&gt;매핑&lt;/span&gt;&lt;div style=&#39;font-family:Courier New;font-size:10px;color:#37474F;margin-top:6px;line-height:16px&#39;&gt;&lt;span style=&#39;color:#B0306A;font-weight:bold&#39;&gt;PK&lt;/span&gt; MAPPING_NO&lt;br&gt;PRODUCT_NO&lt;br&gt;CATEGORY_NO&lt;br&gt;SORT_ORDER&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="270" x="500" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="t_categories" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1D8102;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;" value="&lt;b style=&#39;color:#1D8102;font-size:13px&#39;&gt;CATEGORIES&lt;/b&gt; &lt;span style=&#39;color:#6B7785;font-size:10px&#39;&gt;카테고리&lt;/span&gt;&lt;div style=&#39;font-family:Courier New;font-size:10px;color:#37474F;margin-top:6px;line-height:16px&#39;&gt;&lt;span style=&#39;color:#B0306A;font-weight:bold&#39;&gt;PK&lt;/span&gt; CATEGORY_NO&lt;br&gt;CATEGORY_ID&lt;br&gt;PARENT_NO&lt;br&gt;CATEGORY_NAME&lt;br&gt;SORT_ORDER&lt;/div&gt;" vertex="1">
+          <mxGeometry height="116" width="230" x="930" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="r_u_o" edge="1" parent="1" source="t_users" target="t_orders" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;strokeColor=#90A4AE;fontColor=#6B7785;fontSize=9;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" value="USER_NO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_u_c" edge="1" parent="1" source="t_users" target="t_carts" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;strokeColor=#90A4AE;fontColor=#6B7785;fontSize=9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" value="USER_NO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_o_oi" edge="1" parent="1" source="t_orders" target="t_orderitems" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;strokeColor=#90A4AE;fontColor=#6B7785;fontSize=9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" value="ORDER_NO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_p_oi" edge="1" parent="1" source="t_products" target="t_orderitems" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;strokeColor=#90A4AE;fontColor=#6B7785;fontSize=9;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" value="PRODUCT_NO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_p_c" edge="1" parent="1" source="t_products" target="t_carts" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;strokeColor=#90A4AE;fontColor=#6B7785;fontSize=9;exitX=1;exitY=0.2;entryX=0.5;entryY=1;" value="PRODUCT_NO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_p_m" edge="1" parent="1" source="t_products" target="t_mapping" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;strokeColor=#90A4AE;fontColor=#6B7785;fontSize=9;exitX=0.5;exitY=1;entryX=0.25;entryY=0;" value="PRODUCT_NO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_cat_m" edge="1" parent="1" source="t_categories" target="t_mapping" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;strokeColor=#90A4AE;fontColor=#6B7785;fontSize=9;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" value="CATEGORY_NO">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_cat_self" edge="1" parent="1" source="t_categories" target="t_categories" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;strokeColor=#90A4AE;fontColor=#6B7785;fontSize=9;exitX=1;exitY=0.25;entryX=1;entryY=0.75;" value="PARENT_NO">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1210" y="598" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

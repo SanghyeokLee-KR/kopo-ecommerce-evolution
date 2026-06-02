@@ -1,0 +1,163 @@
+<mxfile host="Electron">
+  <diagram id="ecommerce-jdbc-arch" name="02_architecture">
+    <mxGraphModel dx="1664" dy="991" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;" value="&lt;b style=&#39;font-size:18px;color:#263238&#39;&gt;DB 기반 e-Commerce · 계층형 아키텍처 (JDBC)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="28" width="760" x="30" y="12" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;align=left;verticalAlign=middle;" value="&lt;span style=&#39;color:#6B7785;font-size:12px&#39;&gt;콘솔 입력 → controller → service(트랜잭션) → repository(JDBC) → DBUtil → Oracle Database. JSON 파일을 실제 DB로 교체.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="18" width="980" x="30" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="main" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#37474F;strokeWidth=2;verticalAlign=middle;align=center;" value="&lt;b&gt;Ecommerce.main()&lt;/b&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&#39;color:#6B7785;font-size:11px&#39;&gt;UserController 시작 → 콘솔 메뉴&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="740" x="60" y="84" as="geometry" />
+        </mxCell>
+        <mxCell id="cband" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2FB;strokeColor=#1565C0;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry height="100" width="740" x="60" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="ctab" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1565C0;strokeColor=#1565C0;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" value="controller&lt;div style=&#39;font-size:9px;font-weight:normal&#39;&gt;콘솔 UI&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="104" x="60" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;fontFamily=Courier New;fontSize=10;" value="UserController" vertex="1">
+          <mxGeometry height="24" width="200" x="174" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;fontFamily=Courier New;fontSize=10;" value="ProductController" vertex="1">
+          <mxGeometry height="24" width="200" x="382" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;fontFamily=Courier New;fontSize=10;" value="CartController" vertex="1">
+          <mxGeometry height="24" width="200" x="590" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;fontFamily=Courier New;fontSize=10;" value="OrderController" vertex="1">
+          <mxGeometry height="24" width="200" x="174" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;fontFamily=Courier New;fontSize=10;" value="CategoryController" vertex="1">
+          <mxGeometry height="24" width="200" x="382" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;fontFamily=Courier New;fontSize=10;" value="UserProductController" vertex="1">
+          <mxGeometry height="24" width="200" x="590" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;fontFamily=Courier New;fontSize=10;" value="AdminUserController" vertex="1">
+          <mxGeometry height="24" width="200" x="174" y="218" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;fontFamily=Courier New;fontSize=10;" value="AdminOrderController" vertex="1">
+          <mxGeometry height="24" width="200" x="382" y="218" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;fontFamily=Courier New;fontSize=9;" value="ProductCategoryMappingController" vertex="1">
+          <mxGeometry height="24" width="200" x="590" y="218" as="geometry" />
+        </mxCell>
+        <mxCell id="sband" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDF1E7;strokeColor=#D05C17;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry height="100" width="740" x="60" y="272" as="geometry" />
+        </mxCell>
+        <mxCell id="stab" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D05C17;strokeColor=#D05C17;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" value="service&lt;div style=&#39;font-size:9px;font-weight:normal&#39;&gt;비즈니스 로직 · 트랜잭션&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="104" x="60" y="272" as="geometry" />
+        </mxCell>
+        <mxCell id="sv1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontFamily=Courier New;fontSize=10;" value="UserService" vertex="1">
+          <mxGeometry height="24" width="200" x="174" y="284" as="geometry" />
+        </mxCell>
+        <mxCell id="sv2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontFamily=Courier New;fontSize=10;" value="OrderService" vertex="1">
+          <mxGeometry height="24" width="200" x="382" y="284" as="geometry" />
+        </mxCell>
+        <mxCell id="sv3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontFamily=Courier New;fontSize=10;" value="CartService" vertex="1">
+          <mxGeometry height="24" width="200" x="590" y="284" as="geometry" />
+        </mxCell>
+        <mxCell id="sv4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontFamily=Courier New;fontSize=10;" value="ProductService" vertex="1">
+          <mxGeometry height="24" width="200" x="174" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="sv5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontFamily=Courier New;fontSize=10;" value="CategoryService" vertex="1">
+          <mxGeometry height="24" width="200" x="382" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="sv6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontFamily=Courier New;fontSize=10;" value="UserProductService" vertex="1">
+          <mxGeometry height="24" width="200" x="590" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="sv7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontFamily=Courier New;fontSize=10;" value="AdminUserService" vertex="1">
+          <mxGeometry height="24" width="200" x="174" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="sv8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontFamily=Courier New;fontSize=10;" value="AdminOrderService" vertex="1">
+          <mxGeometry height="24" width="200" x="382" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="sv9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;fontFamily=Courier New;fontSize=9;" value="ProductCategoryMappingService" vertex="1">
+          <mxGeometry height="24" width="200" x="590" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="rband" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E4F3F4;strokeColor=#00838F;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry height="100" width="740" x="60" y="394" as="geometry" />
+        </mxCell>
+        <mxCell id="rtab" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#00838F;strokeColor=#00838F;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" value="repository&lt;div style=&#39;font-size:9px;font-weight:normal&#39;&gt;JDBC&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="104" x="60" y="394" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;fontFamily=Courier New;fontSize=10;" value="UserRepository" vertex="1">
+          <mxGeometry height="24" width="200" x="174" y="406" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;fontFamily=Courier New;fontSize=10;" value="ProductRepository" vertex="1">
+          <mxGeometry height="24" width="200" x="382" y="406" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;fontFamily=Courier New;fontSize=10;" value="OrderRepository" vertex="1">
+          <mxGeometry height="24" width="200" x="590" y="406" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;fontFamily=Courier New;fontSize=10;" value="OrderItemRepository" vertex="1">
+          <mxGeometry height="24" width="200" x="174" y="434" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;fontFamily=Courier New;fontSize=10;" value="CartRepository" vertex="1">
+          <mxGeometry height="24" width="200" x="382" y="434" as="geometry" />
+        </mxCell>
+        <mxCell id="r6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;fontFamily=Courier New;fontSize=10;" value="CategoryRepository" vertex="1">
+          <mxGeometry height="24" width="200" x="590" y="434" as="geometry" />
+        </mxCell>
+        <mxCell id="r7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;fontFamily=Courier New;fontSize=9;" value="ProductCategoryMappingRepository" vertex="1">
+          <mxGeometry height="24" width="200" x="382" y="462" as="geometry" />
+        </mxCell>
+        <mxCell id="udband" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F3E9F7;strokeColor=#6A1B9A;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry height="44" width="740" x="60" y="516" as="geometry" />
+        </mxCell>
+        <mxCell id="utab" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6A1B9A;strokeColor=#6A1B9A;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" value="util.db" vertex="1">
+          <mxGeometry height="44" width="104" x="60" y="516" as="geometry" />
+        </mxCell>
+        <mxCell id="ucontent" parent="1" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=14;" value="&lt;b style=&#39;font-family:Courier New&#39;&gt;DBUtil&lt;/b&gt; &lt;span style=&#39;color:#6B7785&#39;&gt;— getConnection() · setAutoCommit(false) · commit / rollback · close (트랜잭션 관리)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="44" width="616" x="164" y="516" as="geometry" />
+        </mxCell>
+        <mxCell id="cyl" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#E9F5E9;strokeColor=#1D8102;fontSize=11;fontColor=#1B5E20;fontStyle=1;" value="Oracle&#10;Database" vertex="1">
+          <mxGeometry height="76" width="120" x="80" y="586" as="geometry" />
+        </mxCell>
+        <mxCell id="dblist" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1D8102;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;" value="&lt;b style=&#39;color:#1B5E20;font-size:12px&#39;&gt;테이블 7&lt;/b&gt; &lt;span style=&#39;color:#6B7785;font-size:11px&#39;&gt;· 시퀀스 PK · Autonomous DB · Wallet 인증&lt;/span&gt;&lt;div style=&#39;font-family:Courier New;font-size:10px;color:#37474F;margin-top:6px&#39;&gt;USERS · PRODUCTS · CATEGORIES · PRODUCT_CATEGORY_MAPPING&lt;br&gt;CARTS · ORDERS · ORDER_ITEMS&lt;/div&gt;" vertex="1">
+          <mxGeometry height="76" width="580" x="220" y="586" as="geometry" />
+        </mxCell>
+        <mxCell id="console" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#90A4AE;strokeWidth=1.5;dashed=1;verticalAlign=middle;align=center;" value="&lt;b style=&#39;color:#455A64&#39;&gt;콘솔 UI&lt;/b&gt;&lt;br&gt;&lt;span style=&#39;color:#6B7785;font-size:11px&#39;&gt;System.in / System.out&lt;br&gt;InputUtil — 메뉴 선택 · 입력 검증&lt;/span&gt;" vertex="1">
+          <mxGeometry height="72" width="320" x="864" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="domain" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D32;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;" value="&lt;b style=&#39;color:#2E7D32;font-size:13px&#39;&gt;domain&lt;/b&gt; &lt;span style=&#39;color:#6B7785;font-size:11px&#39;&gt;— POJO · Builder 패턴&lt;/span&gt;&lt;div style=&#39;font-family:Courier New;font-size:10px;color:#37474F;margin-top:6px&#39;&gt;User · Product · Order · OrderItem&lt;br&gt;Cart · Category · ProductCategoryMapping&lt;/div&gt;" vertex="1">
+          <mxGeometry height="104" width="320" x="864" y="262" as="geometry" />
+        </mxCell>
+        <mxCell id="enums" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6B7A;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;" value="&lt;b style=&#39;color:#5F6B7A;font-size:13px&#39;&gt;util.common.enums&lt;/b&gt;&lt;div style=&#39;font-family:Courier New;font-size:10px;color:#37474F;margin-top:6px&#39;&gt;UserRole &lt;span style=&#39;color:#6B7785&#39;&gt;· 일반회원 · 관리자&lt;/span&gt;&lt;br&gt;UserStatus &lt;span style=&#39;color:#6B7785&#39;&gt;· 가입요청 · 정상 · 탈퇴&lt;/span&gt;&lt;br&gt;ProductStatus &lt;span style=&#39;color:#6B7785&#39;&gt;· 정상 · 판매중지 · 품절&lt;/span&gt;&lt;br&gt;OrderStatus &lt;span style=&#39;color:#6B7785&#39;&gt;· 주문 상태&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="104" width="320" x="864" y="406" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="main" style="endArrow=block;html=1;rounded=0;strokeColor=#37474F;strokeWidth=2;fontColor=#37474F;fontSize=13;fontStyle=1;exitX=0.15;exitY=1;entryX=0.15;entryY=0;" target="cband" value="①">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="cband" style="endArrow=block;html=1;rounded=0;strokeColor=#37474F;strokeWidth=2;fontColor=#37474F;fontSize=13;fontStyle=1;exitX=0.07;exitY=1;entryX=0.07;entryY=0;" target="sband" value="②">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="sband" style="endArrow=block;html=1;rounded=0;strokeColor=#37474F;strokeWidth=2;fontColor=#37474F;fontSize=13;fontStyle=1;exitX=0.07;exitY=1;entryX=0.07;entryY=0;" target="rband" value="③">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="rband" style="endArrow=block;html=1;rounded=0;strokeColor=#37474F;strokeWidth=2;fontColor=#37474F;fontSize=13;fontStyle=1;exitX=0.07;exitY=1;entryX=0.07;entryY=0;" target="udband" value="④">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="udband" style="startArrow=block;endArrow=block;html=1;rounded=0;strokeColor=#1D8102;strokeWidth=2;fontColor=#1B5E20;fontSize=11;fontStyle=1;exitX=0.07;exitY=1;entryX=0.5;entryY=0;" target="cyl" value="⑤ SQL">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="console" style="startArrow=block;endArrow=block;html=1;rounded=0;strokeColor=#90A4AE;strokeWidth=1.5;dashed=1;fontColor=#6B7785;fontSize=10;" target="cband" value="입출력">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="sband" style="endArrow=open;html=1;rounded=0;strokeColor=#9AA5B1;strokeWidth=1.5;dashed=1;fontColor=#6B7785;fontSize=10;" target="domain" value="도메인 사용">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="rband" style="endArrow=open;html=1;rounded=0;strokeColor=#9AA5B1;strokeWidth=1.5;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="domain" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="domain" style="endArrow=open;html=1;rounded=0;strokeColor=#9AA5B1;strokeWidth=1.5;dashed=1;fontColor=#6B7785;fontSize=10;" target="enums" value="상태 타입">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
