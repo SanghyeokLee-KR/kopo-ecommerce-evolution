@@ -1,0 +1,101 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="ecommerce-arch" name="01_architecture">
+    <mxGraphModel dx="1100" dy="780" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="740" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="&lt;b style='font-size:18px;color:#263238'&gt;파일 기반 e-Commerce · 계층형 아키텍처&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fontColor=#263238;" vertex="1" parent="1">
+          <mxGeometry x="60" y="22" width="880" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="&lt;span style='color:#6B7785;font-size:12px'&gt;JSON 파일을 DB처럼 사용하는 콘솔 애플리케이션 — controller → service → repository → JsonUtil → JSON 파일&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="60" y="54" width="880" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="main" value="&lt;b style='font-size:13px;color:#37474F'&gt;Ecommerce.main()&lt;/b&gt;&lt;br&gt;&lt;span style='color:#6B7785;font-size:11px'&gt;JsonUtil로 JSON 6종 로드 → UserController.showGuestMenu()&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#37474F;strokeWidth=2;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="60" y="92" width="510" height="48" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ctrl" value="&lt;b style='color:#1565C0;font-size:14px'&gt;controller&lt;/b&gt; &lt;span style='color:#6B7785;font-size:11px'&gt;— 콘솔 메뉴 · 입력 처리&lt;/span&gt;&lt;div style='font-family:Courier New;font-size:11px;color:#37474F;margin-top:6px'&gt;UserController · ProductController · CartController&lt;br&gt;OrderController · CategoryController · UserProductController&lt;br&gt;AdminUserController · AdminOrderController · ProductCategoryMappingController&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1565C0;strokeWidth=3;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;spacingRight=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="168" width="510" height="86" as="geometry" />
+        </mxCell>
+
+        <mxCell id="svc" value="&lt;b style='color:#D05C17;font-size:14px'&gt;service&lt;/b&gt; &lt;span style='color:#6B7785;font-size:11px'&gt;— 비즈니스 로직 · 검증 · 재고/상태 처리&lt;/span&gt;&lt;div style='font-family:Courier New;font-size:11px;color:#37474F;margin-top:6px'&gt;UserService · OrderService · CartService · ProductService&lt;br&gt;CategoryService · UserProductService · ProductCategoryMappingService&lt;br&gt;AdminUserService · AdminOrderService&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D05C17;strokeWidth=3;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;spacingRight=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="288" width="510" height="86" as="geometry" />
+        </mxCell>
+
+        <mxCell id="repo" value="&lt;b style='color:#00838F;font-size:14px'&gt;repository&lt;/b&gt; &lt;span style='color:#6B7785;font-size:11px'&gt;— 파일 단위 CRUD (DB 역할)&lt;/span&gt;&lt;div style='font-family:Courier New;font-size:11px;color:#37474F;margin-top:6px'&gt;UserRepository · ProductRepository · OrderRepository&lt;br&gt;CartRepository · CategoryRepository · ProductCategoryMappingRepository&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#00838F;strokeWidth=3;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;spacingRight=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="408" width="510" height="72" as="geometry" />
+        </mxCell>
+
+        <mxCell id="jsonutil" value="&lt;b style='color:#6A1B9A;font-size:14px'&gt;util.json.JsonUtil&lt;/b&gt; &lt;span style='color:#6B7785;font-size:11px'&gt;— Jackson ObjectMapper&lt;/span&gt;&lt;br&gt;&lt;span style='font-family:Courier New;font-size:11px;color:#37474F'&gt;객체 ↔ JSON 직렬화 / 역직렬화&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6A1B9A;strokeWidth=3;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="60" y="516" width="510" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dblabel" value="&lt;span style='color:#6B7785;font-size:11px'&gt;JSON 파일 (DB 대용) — src/data/&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="60" y="586" width="510" height="18" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cyl1" value="user.json" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#E9F5E9;strokeColor=#1D8102;fontSize=10;fontColor=#1B5E20;" vertex="1" parent="1">
+          <mxGeometry x="60" y="612" width="74" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cyl2" value="categories.json" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#E9F5E9;strokeColor=#1D8102;fontSize=10;fontColor=#1B5E20;" vertex="1" parent="1">
+          <mxGeometry x="142" y="612" width="74" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cyl3" value="products.json" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#E9F5E9;strokeColor=#1D8102;fontSize=10;fontColor=#1B5E20;" vertex="1" parent="1">
+          <mxGeometry x="224" y="612" width="74" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cyl4" value="product-category-mapping.json" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#E9F5E9;strokeColor=#1D8102;fontSize=9;fontColor=#1B5E20;" vertex="1" parent="1">
+          <mxGeometry x="306" y="612" width="74" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cyl5" value="carts.json" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#E9F5E9;strokeColor=#1D8102;fontSize=10;fontColor=#1B5E20;" vertex="1" parent="1">
+          <mxGeometry x="388" y="612" width="74" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cyl6" value="orders.json" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#E9F5E9;strokeColor=#1D8102;fontSize=10;fontColor=#1B5E20;" vertex="1" parent="1">
+          <mxGeometry x="470" y="612" width="74" height="74" as="geometry" />
+        </mxCell>
+
+        <mxCell id="console" value="&lt;b style='font-size:13px;color:#455A64'&gt;콘솔 UI&lt;/b&gt;&lt;br&gt;&lt;span style='color:#6B7785;font-size:11px'&gt;System.in / System.out&lt;br&gt;InputUtil — 메뉴 선택 · 입력 검증&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#90A4AE;strokeWidth=2;verticalAlign=middle;align=center;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="168" width="300" height="86" as="geometry" />
+        </mxCell>
+
+        <mxCell id="domain" value="&lt;b style='color:#2E7D32;font-size:14px'&gt;domain&lt;/b&gt; &lt;span style='color:#6B7785;font-size:11px'&gt;— POJO&lt;/span&gt;&lt;div style='font-family:Courier New;font-size:11px;color:#37474F;margin-top:6px'&gt;User · Product · Order&lt;br&gt;Cart · Category&lt;br&gt;ProductCategoryMapping&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E7D32;strokeWidth=3;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="640" y="288" width="300" height="86" as="geometry" />
+        </mxCell>
+
+        <mxCell id="enums" value="&lt;b style='color:#5F6B7A;font-size:14px'&gt;util.common.enums&lt;/b&gt;&lt;div style='font-family:Courier New;font-size:11px;color:#37474F;margin-top:6px'&gt;UserRole &lt;span style='color:#6B7785'&gt;· 일반회원 · 관리자&lt;/span&gt;&lt;br&gt;UserStatus &lt;span style='color:#6B7785'&gt;· 가입요청 · 정상 · 탈퇴요청 · 탈퇴완료&lt;/span&gt;&lt;br&gt;ProductStatus &lt;span style='color:#6B7785'&gt;· 정상 · 판매중지 · 품절&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5F6B7A;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="640" y="400" width="300" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="① 시작 · JSON 로드" style="endArrow=block;html=1;rounded=0;strokeColor=#37474F;strokeWidth=2;fontColor=#37474F;fontSize=11;fontStyle=1;" edge="1" parent="1" source="main" target="ctrl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="② 기능 호출" style="endArrow=block;html=1;rounded=0;strokeColor=#37474F;strokeWidth=2;fontColor=#37474F;fontSize=11;fontStyle=1;" edge="1" parent="1" source="ctrl" target="svc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="③ 조회 · 저장" style="endArrow=block;html=1;rounded=0;strokeColor=#37474F;strokeWidth=2;fontColor=#37474F;fontSize=11;fontStyle=1;" edge="1" parent="1" source="svc" target="repo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="④ 직렬화 위임" style="endArrow=block;html=1;rounded=0;strokeColor=#37474F;strokeWidth=2;fontColor=#37474F;fontSize=11;fontStyle=1;" edge="1" parent="1" source="repo" target="jsonutil">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="⑤ read / write" style="startArrow=block;endArrow=block;html=1;rounded=0;strokeColor=#1D8102;strokeWidth=2;fontColor=#1B5E20;fontSize=11;fontStyle=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="jsonutil" target="cyl3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="사용자 입출력" style="startArrow=block;endArrow=block;html=1;rounded=0;strokeColor=#90A4AE;strokeWidth=2;dashed=1;fontColor=#6B7785;fontSize=10;" edge="1" parent="1" source="console" target="ctrl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="도메인 객체 사용" style="endArrow=open;html=1;rounded=0;strokeColor=#9AA5B1;strokeWidth=1.5;dashed=1;fontColor=#6B7785;fontSize=10;" edge="1" parent="1" source="svc" target="domain">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="" style="endArrow=open;html=1;rounded=0;strokeColor=#9AA5B1;strokeWidth=1.5;dashed=1;" edge="1" parent="1" source="repo" target="domain">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="상태 타입" style="endArrow=open;html=1;rounded=0;strokeColor=#9AA5B1;strokeWidth=1.5;dashed=1;fontColor=#6B7785;fontSize=10;" edge="1" parent="1" source="domain" target="enums">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

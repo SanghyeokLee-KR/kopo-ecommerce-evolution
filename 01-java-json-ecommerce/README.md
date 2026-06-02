@@ -33,6 +33,10 @@ kr.co.javaex.sec23
 └─ util               JsonUtil(Jackson), InputUtil, enum 상태값
 ```
 
+계층 구조와 데이터 흐름을 다이어그램으로 정리했습니다.
+
+![계층형 아키텍처](diagrams/png/01_architecture.png)
+
 ## 기능
 
 관리자
@@ -190,6 +194,8 @@ kr.co.javaex.sec23
 
 <details>
 <summary>과제 원본 (PDF 19페이지)</summary>
+
+원본 파일: [2026 JAVA 최종과제.pdf](docs/assignment/2026-java-final-assignment.pdf)
 
 **02. 작업 범위 — 관리 기능**
 ![작업 범위 관리 기능](docs/assignment/page-02.png)
