@@ -190,19 +190,6 @@ kr.co.javaex.sec23
 리팩터링하면서 노션에 과정을 기록해 뒀습니다. (PDF 백업: [노션 링크 안되면.pdf](java_final_eCommerce_이상혁/노션%20링크%20안되면.pdf))
 
 <details>
-<summary>ERD를 잡아 간 과정</summary>
-
-먼저 JSON 데이터를 기준으로 모든 테이블에 식별자(번호)를 부여했고,
-
-![식별자를 넣은 ERD](docs/erd-identifiers.png)
-
-한 주문에 여러 상품이 들어가는 문제 때문에 주문/주문상세를 1:N로 분리해 최종 ERD를 정리했습니다.
-
-![최종 ERD](docs/erd-final.png)
-
-</details>
-
-<details>
 <summary>장바구니 N+1 — JOIN을 위해 Cart에 필드 추가</summary>
 
 장바구니 조회를 JOIN 한 번으로 바꾸면서, 상품을 다시 조회하지 않도록 Cart에 상품명·가격·상품ID 세 필드를 더했습니다.
