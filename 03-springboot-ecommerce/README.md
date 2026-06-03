@@ -4,6 +4,8 @@
 
 기능을 많이 만드는 것보다 **"어디에 어떤 기술을 왜 적용했는지"** 를 설명할 수 있도록 계층과 책임을 나눠 구현하는 데 집중했습니다.
 
+**바로가기** · [아키텍처](#아키텍처) · [데이터베이스 설계](#데이터베이스-설계) · [주요 기능](#주요-기능) · [문제 해결](#문제-해결--설계-판단) · [실행 방법](#실행-방법) · [LLM 사용 범위](#llm-사용-범위-정직하게-명시)
+
 ## 프로젝트 정보
 
 | | |
@@ -71,18 +73,28 @@ MyBatis로 카테고리·검색·페이징 조회를 처리합니다. 변경이 
 ### 마이페이지 · 주문 내역
 주문 목록·상세와 회원 정보를 조회·관리합니다.
 
+<details>
+<summary>마이페이지 · 주문 내역 화면 보기</summary>
+
 ![마이페이지](docs/screenshots/08-mypage.png)
 ![주문 목록](docs/screenshots/09-order-list.png)
 ![주문 상세](docs/screenshots/10-order-detail.png)
 
+</details>
+
 ### 관리자 — 권한 분리
 관리자 기능은 인터셉터로 접근을 제한합니다. 회원·카테고리·상품·주문을 관리하고 주문 상태를 변경합니다.
+
+<details>
+<summary>관리자 화면 5컷 보기 (대시보드 · 회원 · 카테고리 · 주문 상태 · 상품 운영)</summary>
 
 ![관리자 대시보드](docs/screenshots/11-admin-ui.png)
 ![회원/권한 관리](docs/screenshots/12-admin-users.png)
 ![카테고리 관리](docs/screenshots/13-admin-category.png)
 ![주문 상태 변경](docs/screenshots/14-admin-order-status.png)
 ![상품 운영](docs/screenshots/15-admin-product.png)
+
+</details>
 
 ## 문제 해결 / 설계 판단
 
