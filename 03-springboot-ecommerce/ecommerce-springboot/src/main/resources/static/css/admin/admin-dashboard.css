@@ -1,0 +1,128 @@
+.admin-dashboard-header {
+    padding: 1.6rem 4rem 1.6rem;
+}
+
+.admin-dashboard-header p {
+    font-size: 0.68rem;
+    margin-bottom: 0.5rem;
+}
+
+.admin-dashboard-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.45rem;
+}
+
+.admin-dashboard-header span {
+    font-size: 0.82rem;
+}
+
+.admin-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+    padding: 0 4rem 1.5rem;
+}
+
+.admin-summary-card {
+    padding: 1.25rem 1.6rem;
+}
+
+.admin-summary-card p {
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.admin-summary-card strong {
+    display: block;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.2rem;
+}
+
+.admin-summary-card span {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+}
+
+.admin-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    padding: 0 4rem;
+}
+
+.admin-menu-card {
+    display: block;
+    padding: 1.45rem 1.8rem;
+    min-height: 120px;
+    transition:
+            border-color 0.3s ease,
+            transform 0.3s ease,
+            background-color 0.3s ease;
+}
+
+.admin-menu-card:hover {
+    border-color: var(--text-main);
+    transform: translateY(-2px);
+    background-color: #fafafa;
+}
+
+.admin-menu-card p {
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    color: var(--text-muted);
+    margin-bottom: 0.65rem;
+}
+
+.admin-menu-card h2 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 0.45rem;
+}
+
+.admin-menu-card span {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 1280px) {
+    .admin-dashboard-header {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    .admin-summary-grid,
+    .admin-menu-grid {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .admin-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-menu-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-dashboard-header {
+        padding: 1.5rem 2rem;
+    }
+
+    .admin-summary-grid,
+    .admin-menu-grid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .admin-summary-grid {
+        grid-template-columns: 1fr;
+    }
+}

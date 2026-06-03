@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'SANG GALLERY | ' + ${product.nmProduct}">
+        SANG GALLERY | 상품 상세
+    </title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/product/product-common.css}">
+    <link rel="stylesheet" th:href="@{/css/product/product-detail.css}">
+
+    <script th:src="@{/js/common/header.js}" defer></script>
+</head>
+<body>
+
+<div th:replace="~{common/header :: header}"></div>
+
+<main class="product-detail-page">
+
+    <section class="product-detail-layout">
+
+        <div class="detail-image-box">
+            <img th:if="${product.imagePath != null}"
+                 th:src="@{${product.imagePath}}"
+                 th:alt="${product.nmProduct}">
+
+            <div th:if="${product.imagePath == null}" class="no-image detail-no-image">
+                NO IMAGE
+            </div>
+        </div>
+
+        <div class="detail-info-box">
+            <p class="detail-subtitle">SANG GALLERY PHOTO</p>
+
+            <h1 th:text="${product.nmProduct}">
+                상품명
+            </h1>
+
+            <p class="detail-price"
+               th:text="${#numbers.formatInteger(product.qtPrice, 3, 'COMMA')} + '원'">
+                0원
+            </p>
+
+            <div class="detail-table">
+                <div>
+                    <span>판매 일자</span>
+                    <strong th:text="${product.dtSellStart}">20260101</strong>
+                </div>
+
+                <div>
+                    <span>재고 수량</span>
+                    <strong th:text="${product.qtStock} + '개'">0개</strong>
+                </div>
+
+                <div>
+                    <span>배송비</span>
+                    <strong>3,000원</strong>
+                </div>
+
+                <div>
+                    <span>상품 상태</span>
+                    <strong th:if="${product.qtStock > 0}">판매중</strong>
+                    <strong th:if="${product.qtStock <= 0}">품절</strong>
+                </div>
+            </div>
+
+            <div class="detail-description">
+                <h2>상세 설명</h2>
+                <p th:text="${product.dcProduct}">
+                    상품 상세 설명입니다.
+                </p>
+            </div>
+
+            <form th:action="@{/basket/items}" method="post" class="detail-action-form">
+                <input type="hidden" name="nbProduct" th:value="${product.nbProduct}">
+
+                <div class="quantity-box">
+                    <label for="quantity">수량</label>
+                    <input type="number"
+                           id="quantity"
+                           name="quantity"
+                           value="1"
+                           min="1"
+                           th:max="${product.qtStock}"
+                           th:disabled="${product.qtStock <= 0}">
+                </div>
+
+                <button type="submit"
+                        class="btn-cart"
+                        th:disabled="${product.qtStock <= 0}">
+                    장바구니 담기
+                </button>
+
+                <button type="submit"
+                        th:formaction="@{/orders/direct}"
+                        class="btn-order"
+                        th:disabled="${product.qtStock <= 0}">
+                    바로 주문
+                </button>
+            </form>
+
+            <p th:if="${product.qtStock <= 0}" class="soldout-message">
+                현재 품절된 상품입니다.
+            </p>
+
+            <a th:href="@{/products}" class="back-link">
+                목록으로 돌아가기
+            </a>
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>

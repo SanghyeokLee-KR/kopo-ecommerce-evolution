@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SANG GALLERY | 카테고리 관리</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/common/admin-common.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/admin-category.css}">
+
+    <script th:src="@{/js/common/header.js}" defer></script>
+</head>
+<body>
+
+<div th:replace="~{common/header :: header}"></div>
+
+<main class="admin-category-page">
+
+    <section class="admin-category-header">
+        <div>
+            <p>SANG GALLERY ADMIN</p>
+            <h1>카테고리 관리</h1>
+            <span>대분류, 중분류, 정렬 순서를 관리할 수 있습니다.</span>
+        </div>
+
+        <a th:href="@{/admin}" class="admin-back-link">
+            관리자 대시보드
+        </a>
+    </section>
+
+    <section class="admin-message-area">
+        <p th:if="${errorMessage != null}"
+           class="admin-error-message"
+           th:text="${errorMessage}">
+            오류 메시지
+        </p>
+
+        <p th:if="${successMessage != null}"
+           class="admin-success-message"
+           th:text="${successMessage}">
+            성공 메시지
+        </p>
+    </section>
+
+    <section class="admin-category-layout">
+
+        <aside class="category-form-panel">
+            <h2>카테고리 등록</h2>
+
+            <form th:action="@{/admin/categories}" method="post" class="category-form">
+
+                <label for="nbParentCategory">상위 카테고리</label>
+                <select id="nbParentCategory" name="nbParentCategory">
+                    <option value="">대분류로 등록</option>
+                    <option th:each="category : ${categories}"
+                            th:if="${category.cnLevel == 1}"
+                            th:value="${category.nbCategory}"
+                            th:text="${category.nmCategory}">
+                        대분류
+                    </option>
+                </select>
+
+                <label for="nmCategory">카테고리명</label>
+                <input type="text"
+                       id="nmCategory"
+                       name="nmCategory"
+                       placeholder="카테고리명을 입력하세요"
+                       required>
+
+                <label for="cnLevel">레벨</label>
+                <select id="cnLevel" name="cnLevel">
+                    <option value="1">대분류</option>
+                    <option value="2">중분류</option>
+                </select>
+
+                <label for="cnOrder">정렬 순서</label>
+                <input type="number"
+                       id="cnOrder"
+                       name="cnOrder"
+                       value="1"
+                       min="1"
+                       required>
+
+                <button type="submit">
+                    등록하기
+                </button>
+            </form>
+
+            <p class="form-guide">
+                중분류를 등록할 때는 상위 카테고리를 선택하고 레벨을 중분류로 지정하세요.
+                같은 대분류 안에서는 정렬 순서가 중복될 수 없습니다.
+            </p>
+        </aside>
+
+        <section class="category-list-panel">
+            <div class="category-list-title">
+                <h2>카테고리 목록</h2>
+                <span>대분류 아래에 중분류가 표시됩니다.</span>
+            </div>
+
+            <div th:if="${#lists.isEmpty(categories)}" class="empty-category">
+                등록된 카테고리가 없습니다.
+            </div>
+
+            <div class="category-tree"
+                 th:each="parent : ${categories}"
+                 th:if="${parent.cnLevel == 1}">
+
+                <div class="category-row parent-row">
+                    <div class="category-main-info">
+                        <span class="level-badge">대분류</span>
+                        <strong th:text="${parent.nmCategory}">대분류명</strong>
+                        <small th:text="'순서 ' + ${parent.cnOrder}">순서 1</small>
+                    </div>
+
+                    <div class="category-meta">
+                        <span th:text="'ID ' + ${parent.nbCategory}">ID 1</span>
+                    </div>
+
+                    <form th:action="@{/admin/categories/{nbCategory}(nbCategory=${parent.nbCategory})}"
+                          method="post"
+                          class="category-edit-form">
+                        <input type="hidden" name="_method" value="put">
+
+                        <input type="hidden" name="nbParentCategory" value="">
+                        <input type="hidden" name="cnLevel" value="1">
+
+                        <input type="text"
+                               name="nmCategory"
+                               th:value="${parent.nmCategory}"
+                               required>
+
+                        <input type="number"
+                               name="cnOrder"
+                               th:value="${parent.cnOrder}"
+                               min="1"
+                               required>
+
+                        <button type="submit">수정</button>
+                    </form>
+
+                    <form th:action="@{/admin/categories/{nbCategory}/delete(nbCategory=${parent.nbCategory})}"
+                          method="post"
+                          class="category-delete-form">
+                        <button type="submit"
+                                onclick="return confirm('카테고리를 삭제하시겠습니까?');">
+                            삭제
+                        </button>
+                    </form>
+                </div>
+
+                <div class="child-category-wrap">
+                    <div th:each="child : ${categories}"
+                         th:if="${child.nbParentCategory == parent.nbCategory}"
+                         class="category-row child-row">
+
+                        <div class="category-main-info">
+                            <span class="level-badge child">중분류</span>
+                            <strong th:text="${child.nmCategory}">중분류명</strong>
+                            <small th:text="'순서 ' + ${child.cnOrder}">순서 1</small>
+                        </div>
+
+                        <div class="category-meta">
+                            <span th:text="'ID ' + ${child.nbCategory}">ID 2</span>
+                            <span th:text="'상위 ' + ${child.nbParentCategory}">상위 1</span>
+                        </div>
+
+                        <form th:action="@{/admin/categories/{nbCategory}(nbCategory=${child.nbCategory})}"
+                              method="post"
+                              class="category-edit-form">
+                            <input type="hidden" name="_method" value="put">
+
+                            <input type="hidden"
+                                   name="nbParentCategory"
+                                   th:value="${parent.nbCategory}">
+
+                            <input type="hidden" name="cnLevel" value="2">
+
+                            <input type="text"
+                                   name="nmCategory"
+                                   th:value="${child.nmCategory}"
+                                   required>
+
+                            <input type="number"
+                                   name="cnOrder"
+                                   th:value="${child.cnOrder}"
+                                   min="1"
+                                   required>
+
+                            <button type="submit">수정</button>
+                        </form>
+
+                        <form th:action="@{/admin/categories/{nbCategory}/delete(nbCategory=${child.nbCategory})}"
+                              method="post"
+                              class="category-delete-form">
+                            <button type="submit"
+                                    onclick="return confirm('카테고리를 삭제하시겠습니까?');">
+                                삭제
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+.mypage {
+    padding-top: 8rem;
+    padding-bottom: 5rem;
+}
+
+.mypage-header {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.mypage-header p {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+}
+
+.mypage-header h1 {
+    font-size: 2.6rem;
+    font-weight: 300;
+}
+
+.mypage-box {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    border: 1px solid #eeeeee;
+}
+
+.mypage-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eeeeee;
+    font-size: 0.95rem;
+}
+
+.mypage-row span {
+    color: var(--text-muted);
+}
+
+.mypage-row strong {
+    font-weight: 400;
+}
+
+.mypage-actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.btn-dark,
+.btn-outline,
+.btn-danger {
+    width: 100%;
+    padding: 0.9rem;
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    font-family: var(--font-main);
+}
+
+.btn-dark {
+    background-color: var(--text-main);
+    color: #ffffff;
+    border: 1px solid var(--text-main);
+}
+
+.btn-outline {
+    background-color: #ffffff;
+    color: var(--text-main);
+    border: 1px solid var(--text-main);
+}
+
+.btn-danger {
+    background-color: #ffffff;
+    color: #a33;
+    border: 1px solid #a33;
+}
+
+.mypage-row input {
+    width: 60%;
+    padding: 0.65rem;
+    border: 1px solid #dddddd;
+    font-family: var(--font-main);
+}
+
+.password-change-box {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eeeeee;
+}
+
+.password-change-box h2 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.password-change-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.password-change-box input {
+    padding: 0.8rem;
+    border: 1px solid #dddddd;
+    font-family: var(--font-main);
+}

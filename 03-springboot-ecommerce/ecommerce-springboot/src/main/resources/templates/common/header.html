@@ -1,0 +1,63 @@
+<!-- templates/common/header.html -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<th:block th:fragment="header">
+
+    <header>
+        <div class="logo">
+            <a th:href="@{/}">SANG GALLERY</a>
+        </div>
+
+        <ul class="nav-links">
+            <li><a th:href="@{/products}">SHOP</a></li>
+            <li><a th:href="@{/products}">GALLERY</a></li>
+            <li><a th:href="@{/products}">ABOUT</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button type="button" class="header-search-toggle">
+                SEARCH
+            </button>
+
+            <a th:href="@{/basket}">CART</a>
+
+            <th:block th:if="${session.loginUser == null}">
+                <a th:href="@{/users/login}">LOGIN</a>
+            </th:block>
+
+            <th:block th:if="${session.loginUser != null}">
+                <a th:href="@{/users/mypage}"
+                   class="mypage-link"
+                   th:text="${session.loginUser.nmUser} + '님'">
+                    회원님
+                </a>
+
+                <a th:href="@{/users/logout}">LOGOUT</a>
+            </th:block>
+
+            <a th:if="${session.loginUser != null and session.loginUser.cdUserType == '20'}"
+               th:href="@{/admin}">
+                ADMIN
+            </a>
+        </div>
+    </header>
+
+    <div class="header-search-panel">
+        <form th:action="@{/products}" method="get" class="header-search-panel-form">
+            <input type="text"
+                   name="keyword"
+                   placeholder="검색어를 입력하세요"
+                   autocomplete="off">
+
+            <button type="submit" aria-label="검색">
+                🔍
+            </button>
+        </form>
+    </div>
+
+</th:block>
+
+</body>
+</html>

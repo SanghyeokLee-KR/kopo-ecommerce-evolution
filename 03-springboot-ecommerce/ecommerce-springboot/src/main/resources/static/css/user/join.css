@@ -1,0 +1,440 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+    --white: #ffffff;
+    --black: #0a0a0a;
+    --soft-gray: #f8f8f8;
+    --mid-gray: #888888;
+    --light-gray: #cccccc;
+    --line: #e4e4e4;
+    --error: #e53935;
+    --success: #2e7d32;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Pretendard Variable', 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 300; /* 추가 */
+    letter-spacing: -0.02em; /* 추가 */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+button {
+    border: none;
+    background: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--black);
+    outline-offset: 3px;
+}
+
+.auth-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.auth-image {
+    display: none;
+    position: relative;
+    background: #000;
+}
+
+.auth-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.86;
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* 수정 */
+    padding: 48px;
+    color: var(--white);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.72));
+}
+
+.logo {
+    position: fixed; /* 수정: 인덱스와 맞춤 */
+    top: 40px;
+    left: 64px;
+    z-index: 100;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.caption {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.auth-content {
+    flex: 1;
+    position: relative;
+    height: 100vh;
+    padding: 34px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.btn-back {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    z-index: 2;
+    font-size: 11px;
+    font-weight: 500; /* 수정: 700 -> 500 */
+    letter-spacing: 1px;
+    color: var(--mid-gray);
+    text-transform: uppercase;
+}
+
+.btn-back:hover {
+    color: var(--black);
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 408px;
+}
+
+.logo-mobile {
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500; /* 수정: 900 -> 500 */
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.form-header {
+    margin-bottom: 20px;
+}
+
+.auth-title {
+    font-family: 'Inter', 'Pretendard Variable', sans-serif;
+    font-size: 25px;
+    line-height: 1.2;
+    font-weight: 300; /* 수정: 800 -> 300 */
+    letter-spacing: -0.03em;
+    margin-bottom: 5px;
+}
+
+.auth-subtitle {
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--mid-gray);
+}
+
+.auth-subtitle a {
+    color: var(--black);
+    font-weight: 500; /* 수정: 700 -> 500 */
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 10px;
+    font-weight: 500; /* 수정: 800 -> 500 */
+    letter-spacing: 1px;
+    color: var(--mid-gray);
+    text-transform: uppercase;
+}
+
+.input-group input {
+    width: 100%;
+    height: 34px;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    padding: 5px 0;
+    font-size: 14px;
+    color: var(--black);
+    background: transparent;
+    outline: none;
+    font-weight: 300; /* 추가 */
+    transition: border-color 0.22s ease, background-color 0.22s ease;
+}
+
+.input-group input:focus {
+    border-bottom-color: var(--black);
+}
+
+.input-group input::placeholder {
+    color: var(--light-gray);
+    font-weight: 300;
+}
+
+.input-group.has-error input {
+    border-bottom-color: var(--error);
+}
+
+.input-group input:-webkit-autofill,
+.input-group input:-webkit-autofill:hover,
+.input-group input:-webkit-autofill:focus,
+.input-group input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--black);
+    caret-color: var(--black);
+    box-shadow: 0 0 0 1000px var(--white) inset;
+    -webkit-box-shadow: 0 0 0 1000px var(--white) inset;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-row .input-group {
+    flex: 1;
+}
+
+.input-action-wrap,
+.password-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: 9px;
+}
+
+.input-action-wrap input,
+.password-wrap input {
+    flex: 1;
+}
+
+.btn-small {
+    flex: 0 0 auto;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--black);
+    font-size: 10px;
+    font-weight: 500; /* 수정: 800 -> 500 */
+    color: var(--black);
+    background: var(--white);
+    transition: background-color 0.22s ease, color 0.22s ease, transform 0.18s ease;
+}
+
+.btn-small:hover {
+    color: var(--white);
+    background: var(--black);
+    transform: translateY(-1px);
+}
+
+.btn-password-toggle {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 34px;
+    font-size: 14px;
+    opacity: 0.55;
+    transition: opacity 0.2s ease, transform 0.18s ease;
+}
+
+.btn-password-toggle:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+.error-message {
+    min-height: 14px;
+    margin-top: 3px;
+    font-size: 10.5px;
+    line-height: 1.25;
+    font-weight: 400; /* 수정: 500 -> 400 */
+    color: var(--error);
+}
+
+.terms-section {
+    margin-top: 16px;
+    padding-top: 14px;
+    margin-bottom: 16px;
+    border-top: 1px solid var(--line);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 20px;
+    margin-bottom: 9px;
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+    font-weight: 300; /* 추가 */
+}
+
+.checkbox-group span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 16px;
+    line-height: 1.2;
+}
+
+.checkbox-group.all-agree {
+    margin-bottom: 12px;
+    padding-bottom: 11px;
+    border-bottom: 1px solid var(--line);
+    font-weight: 500; /* 수정: 800 -> 500 */
+}
+
+.checkbox-group input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    border: 1px solid var(--mid-gray);
+    border-radius: 2px;
+    position: relative;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    background: var(--black);
+    border-color: var(--black);
+}
+
+.checkbox-group input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 500; /* 수정: 800 -> 500 */
+    transform: translate(-50%, -52%);
+}
+
+.terms-error {
+    margin-top: -1px;
+}
+
+.btn-submit {
+    width: 100%;
+    height: 48px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 500; /* 수정: 800 -> 500 */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: background-color 0.24s ease, transform 0.18s ease, box-shadow 0.24s ease;
+}
+
+.btn-submit:hover {
+    background: #333333;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+}
+
+@media (min-width: 900px) {
+    .auth-image {
+        display: block;
+        flex: 1.2;
+    }
+
+    .auth-content {
+        flex: 1;
+    }
+
+    .logo-mobile {
+        display: none;
+    }
+}
+
+@media (max-height: 760px) {
+    .auth-content {
+        align-items: flex-start;
+        padding-top: 28px;
+        padding-bottom: 28px;
+    }
+
+    .input-group {
+        margin-bottom: 9px;
+    }
+
+    .terms-section {
+        margin-top: 12px;
+        margin-bottom: 13px;
+    }
+
+    .checkbox-group {
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 899px) {
+    body {
+        overflow: auto;
+    }
+
+    .auth-container {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .auth-content {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: visible;
+        padding: 72px 22px 36px;
+    }
+
+    .btn-back {
+        top: 24px;
+        right: 24px;
+    }
+}
+
+@media (max-width: 520px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}

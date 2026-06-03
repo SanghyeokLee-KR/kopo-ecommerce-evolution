@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SANG GALLERY | 회원정보 수정</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/user/mypage.css}">
+
+    <script th:src="@{/js/common/header.js}" defer></script>
+</head>
+<body>
+
+<div th:replace="~{common/header :: header}"></div>
+
+<main class="mypage">
+    <section class="mypage-header">
+        <p>MY PAGE</p>
+        <h1>회원정보 수정</h1>
+    </section>
+
+    <section class="mypage-box">
+
+        <p th:if="${errorMessage != null}"
+           th:text="${errorMessage}"
+           style="color: #a33; margin-bottom: 1rem;">
+            오류 메시지
+        </p>
+
+        <form th:action="@{/users/edit}" method="post">
+
+            <div class="mypage-row">
+                <span>아이디</span>
+                <strong th:text="${myPage.idUser}">user01</strong>
+            </div>
+
+            <div class="mypage-row">
+                <span>이름</span>
+                <input type="text"
+                       name="nmUser"
+                       th:value="${myPage.nmUser}"
+                       required>
+            </div>
+
+            <div class="mypage-row">
+                <span>휴대전화</span>
+                <input type="text"
+                       name="noMobile"
+                       th:value="${myPage.noMobile}"
+                       required>
+            </div>
+
+            <div class="mypage-row">
+                <span>이메일</span>
+                <input type="email"
+                       name="nmEmail"
+                       th:value="${myPage.nmEmail}"
+                       required>
+            </div>
+
+            <div class="mypage-actions">
+                <button type="submit" class="btn-dark">
+                    수정하기
+                </button>
+
+                <a th:href="@{/users/mypage}" class="btn-outline">
+                    취소
+                </a>
+            </div>
+        </form>
+
+    </section>
+</main>
+
+</body>
+</html>

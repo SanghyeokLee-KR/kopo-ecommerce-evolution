@@ -1,0 +1,91 @@
+<!-- templates/user/login.html -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SANG GALLERY | 로그인</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/user/auth.css}">
+    <link rel="stylesheet" th:href="@{/css/user/login.css}">
+
+    <script th:src="@{/js/user/auth.js}" defer></script>
+    <script th:src="@{/js/user/login.js}" defer></script>
+</head>
+<body>
+
+<main class="auth-container">
+    <section class="auth-image">
+        <img th:src="@{/img/user/login-screen.webp}" alt="Gallery aesthetic">
+        <div class="image-overlay">
+            <a th:href="@{/}" class="logo">SANG GALLERY</a>
+            <p class="caption">이상혁 갤러리에 오신것을 환영합니다.</p>
+        </div>
+    </section>
+
+    <section class="auth-content" aria-labelledby="loginTitle">
+        <a th:href="@{/}" class="btn-back">Close ✕</a>
+
+        <div class="form-wrapper">
+            <a th:href="@{/}" class="logo-mobile">SANG GALLERY</a>
+
+            <header class="form-header">
+                <h1 id="loginTitle" class="auth-title">로그인</h1>
+                <p class="auth-subtitle">
+                    계정이 없으신가요?
+                    <a th:href="@{/users/signup}">Create Account</a>
+                </p>
+            </header>
+
+            <p class="server-error-message"
+               th:if="${errorMessage}"
+               th:text="${errorMessage}">
+            </p>
+
+            <form id="loginForm" th:action="@{/users/login}" method="post" novalidate>
+                <div class="input-group">
+                    <label for="idUser">ID</label>
+                    <input type="text"
+                           id="idUser"
+                           name="idUser"
+                           placeholder="아이디"
+                           autocomplete="username"
+                           required>
+                    <p id="idUserError" class="error-message"></p>
+                </div>
+
+                <div class="input-group">
+                    <label for="nmPaswd">Password</label>
+                    <div class="password-wrap">
+                        <input type="password"
+                               id="nmPaswd"
+                               name="nmPaswd"
+                               placeholder="••••••••"
+                               autocomplete="current-password"
+                               required>
+                        <button type="button"
+                                class="btn-password-toggle"
+                                data-target="nmPaswd"
+                                aria-label="비밀번호 표시">👁</button>
+                    </div>
+                    <p id="nmPaswdError" class="error-message"></p>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-group">
+                        <input type="checkbox" name="rememberMe">
+                        <span>로그인 상태 유지</span>
+                    </label>
+
+                    <a href="#" class="forgot-pw">비밀번호 찾기</a>
+                </div>
+
+                <button type="submit" class="btn-submit">로그인</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

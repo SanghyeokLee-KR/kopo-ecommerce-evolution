@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SANG GALLERY | 상품 수정</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/common/admin-common.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/admin-product-edit.css}">
+
+    <script th:src="@{/js/common/header.js}" defer></script>
+</head>
+<body>
+
+<div th:replace="~{common/header :: header}"></div>
+
+<main class="admin-product-edit-page">
+
+    <section class="admin-product-edit-header">
+        <div>
+            <p>SANG GALLERY ADMIN</p>
+            <h1>상품 수정</h1>
+            <span>상품 정보, 재고, 이미지, 카테고리를 수정할 수 있습니다.</span>
+        </div>
+
+        <a th:href="@{/admin/products}" class="admin-back-link">
+            상품 목록
+        </a>
+    </section>
+
+    <section class="admin-edit-message-area">
+        <p th:if="${errorMessage != null}"
+           class="admin-error-message"
+           th:text="${errorMessage}">
+            오류 메시지
+        </p>
+
+        <p th:if="${successMessage != null}"
+           class="admin-success-message"
+           th:text="${successMessage}">
+            성공 메시지
+        </p>
+    </section>
+
+    <section class="admin-product-edit-layout">
+
+        <div class="edit-image-panel">
+            <div class="edit-image-box">
+                <img th:if="${product.imagePath != null}"
+                     th:src="@{${product.imagePath}}"
+                     th:alt="${product.nmProduct}">
+
+                <span th:if="${product.imagePath == null}">
+                    NO IMAGE
+                </span>
+            </div>
+
+            <p>
+                현재 등록된 상품 이미지입니다.
+            </p>
+        </div>
+
+        <form th:action="@{/admin/products/{nbProduct}/edit(nbProduct=${product.nbProduct})}"
+              method="post"
+              enctype="multipart/form-data"
+              class="edit-form">
+
+            <label for="nmProduct">상품명</label>
+            <input type="text"
+                   id="nmProduct"
+                   name="nmProduct"
+                   th:value="${product.nmProduct}"
+                   required>
+
+            <label for="dcProduct">상세 설명</label>
+            <textarea id="dcProduct"
+                      name="dcProduct"
+                      required
+                      th:text="${product.dcProduct}">
+            </textarea>
+
+            <div class="edit-form-row three-columns">
+                <div class="edit-field">
+                    <label for="dtSellStart">판매 일자</label>
+                    <input type="date"
+                           id="dtSellStart"
+                           name="dtSellStart"
+                           th:value="${#strings.substring(product.dtSellStart, 0, 4)} + '-' + ${#strings.substring(product.dtSellStart, 4, 6)} + '-' + ${#strings.substring(product.dtSellStart, 6, 8)}"
+                           required>
+                </div>
+
+                <div class="edit-field">
+                    <label for="qtPrice">가격</label>
+                    <input type="number"
+                           id="qtPrice"
+                           name="qtPrice"
+                           min="0"
+                           th:value="${product.qtPrice}"
+                           required>
+                </div>
+
+                <div class="edit-field">
+                    <label for="qtStock">재고 수량</label>
+                    <input type="number"
+                           id="qtStock"
+                           name="qtStock"
+                           min="0"
+                           th:value="${product.qtStock}"
+                           required>
+                </div>
+            </div>
+
+            <label for="nbCategory">카테고리</label>
+            <select id="nbCategory" name="nbCategory" required>
+                <option value="">중분류 카테고리 선택</option>
+
+                <optgroup th:each="parent : ${categories}"
+                          th:if="${parent.cnLevel == 1}"
+                          th:label="${parent.nmCategory} + ' (대분류)'">
+
+                    <option th:each="child : ${categories}"
+                            th:if="${child.nbParentCategory == parent.nbCategory}"
+                            th:value="${child.nbCategory}"
+                            th:selected="${product.nbCategory == child.nbCategory}"
+                            th:text="${child.nmCategory} + ' (중분류)'">
+                        중분류
+                    </option>
+
+                </optgroup>
+            </select>
+
+            <label for="productImage">상품 이미지 변경</label>
+
+            <div class="custom-file-box">
+                <input type="file"
+                       id="productImage"
+                       name="productImage"
+                       accept="image/*">
+
+                <label for="productImage" class="custom-file-button">
+                    새 이미지 선택
+                </label>
+
+                <span class="custom-file-text">
+                    선택하지 않으면 기존 이미지가 유지됩니다.
+                </span>
+            </div>
+
+            <div class="edit-form-actions">
+                <button type="submit">
+                    수정하기
+                </button>
+
+                <a th:href="@{/admin/products}">
+                    취소
+                </a>
+            </div>
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+</html>

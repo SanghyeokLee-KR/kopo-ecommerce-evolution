@@ -1,0 +1,434 @@
+.admin-category-page,
+.admin-dashboard-page,
+.admin-user-page {
+    padding-top: 6.4rem;
+}
+
+.admin-order-page,
+.admin-product-page,
+.admin-product-edit-page {
+    padding-top: 5.8rem;
+    min-height: 100vh;
+}
+
+.admin-category-page,
+.admin-user-page {
+    padding-bottom: 3rem;
+}
+
+.admin-dashboard-page,
+.admin-order-page {
+    padding-bottom: 2rem;
+}
+
+.admin-product-page,
+.admin-product-edit-page {
+    padding-bottom: 1.5rem;
+}
+
+.admin-category-header,
+.admin-order-header,
+.admin-product-header,
+.admin-product-edit-header,
+.admin-user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.admin-category-header p,
+.admin-dashboard-header p,
+.admin-order-header p,
+.admin-product-header p,
+.admin-product-edit-header p,
+.admin-user-header p {
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+}
+
+.admin-category-header h1,
+.admin-dashboard-header h1,
+.admin-order-header h1,
+.admin-product-header h1,
+.admin-product-edit-header h1,
+.admin-user-header h1 {
+    font-weight: 300;
+    letter-spacing: -0.04em;
+}
+
+.admin-category-header span,
+.admin-dashboard-header span,
+.admin-order-header span,
+.admin-product-header span,
+.admin-product-edit-header span,
+.admin-user-header span {
+    color: var(--text-muted);
+}
+
+.admin-back-link {
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.admin-error-message,
+.admin-success-message {
+    border: 1px solid;
+}
+
+.admin-error-message {
+    color: #a33;
+    border-color: rgba(170, 51, 51, 0.25);
+    background-color: rgba(170, 51, 51, 0.04);
+}
+
+.admin-success-message {
+    color: #1f6f3f;
+    border-color: rgba(31, 111, 63, 0.25);
+    background-color: rgba(31, 111, 63, 0.04);
+}
+
+.category-form-panel,
+.product-form-panel,
+.order-summary-card,
+.edit-image-panel,
+.edit-form,
+.admin-summary-card,
+.admin-menu-card {
+    border: 1px solid #eeeeee;
+    background-color: #ffffff;
+}
+
+.category-form-panel,
+.product-form-panel,
+.edit-image-panel {
+    align-self: start;
+}
+
+.category-list-title,
+.product-list-title,
+.admin-order-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.category-list-title h2,
+.product-list-title h2,
+.admin-order-title h2,
+.category-form-panel h2,
+.product-form-panel h2,
+.order-summary-card h2 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.category-list-title span,
+.product-list-title span,
+.admin-order-title span {
+    color: var(--text-muted);
+}
+
+.empty-category,
+.empty-order,
+.empty-product {
+    padding: 4rem 0;
+    text-align: center;
+    color: var(--text-muted);
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.category-form,
+.product-form,
+.edit-form,
+.order-status-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.category-form label,
+.product-form label,
+.edit-form label,
+.order-status-form label,
+.edit-field label {
+    color: var(--text-muted);
+}
+
+.category-form input,
+.category-form select,
+.product-form input,
+.product-form select,
+.product-form textarea,
+.edit-form input,
+.edit-form select,
+.edit-form textarea,
+.order-status-form select,
+.inline-form select,
+.category-edit-form input {
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+    font-family: var(--font-main);
+    outline: none;
+}
+
+.category-form input,
+.category-form select,
+.product-form input,
+.product-form select,
+.product-form textarea,
+.edit-form input,
+.edit-form select,
+.edit-form textarea,
+.order-status-form select {
+    width: 100%;
+}
+
+.category-form input:focus,
+.category-form select:focus,
+.product-form input:focus,
+.product-form select:focus,
+.product-form textarea:focus,
+.edit-form input:focus,
+.edit-form select:focus,
+.edit-form textarea:focus,
+.category-edit-form input:focus {
+    border-color: var(--text-main);
+}
+
+.product-form optgroup,
+.edit-form optgroup {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.product-form option,
+.edit-form option {
+    font-weight: 300;
+    color: var(--text-main);
+}
+
+.category-form button,
+.category-edit-form button,
+.order-status-form button,
+.order-detail-link,
+.product-form button,
+.product-actions a,
+.product-actions button,
+.inline-form button,
+.edit-form-actions button,
+.edit-form-actions a {
+    font-family: var(--font-main);
+    cursor: pointer;
+}
+
+.category-form button,
+.category-edit-form button,
+.order-status-form button,
+.order-detail-link,
+.product-form button,
+.product-actions a,
+.inline-form button,
+.edit-form-actions button {
+    border: 1px solid var(--text-main);
+    background-color: var(--text-main);
+    color: #ffffff;
+}
+
+.category-form button:hover,
+.category-edit-form button:hover,
+.order-status-form button:hover,
+.order-detail-link:hover,
+.product-form button:hover,
+.product-actions a:hover,
+.inline-form button:hover,
+.edit-form-actions button:hover {
+    background-color: #ffffff;
+    color: var(--text-main);
+}
+
+.category-delete-form button,
+.product-actions button {
+    border-color: #a33;
+    background-color: #ffffff;
+    color: #a33;
+}
+
+.category-delete-form button:hover,
+.product-actions button:hover {
+    background-color: #a33;
+    color: #ffffff;
+}
+
+.admin-order-table-wrap,
+.admin-product-table-wrap,
+.admin-user-table-wrap {
+    overflow-x: auto;
+}
+
+.admin-order-table,
+.admin-product-table,
+.admin-user-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid #eeeeee;
+}
+
+.admin-order-table th,
+.admin-product-table th,
+.admin-user-table th {
+    border-bottom: 1px solid #eeeeee;
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.admin-order-table td,
+.admin-product-table td,
+.admin-user-table td {
+    border-bottom: 1px solid #eeeeee;
+    color: var(--text-main);
+    vertical-align: middle;
+}
+
+.order-thumb,
+.product-thumb,
+.edit-image-box {
+    background-color: #f5f5f5;
+    overflow: hidden;
+}
+
+.order-thumb img,
+.product-thumb img,
+.edit-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.order-thumb span,
+.product-thumb span,
+.edit-image-box span {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
+.order-status,
+.product-status,
+.status-badge,
+.type-badge,
+.level-badge {
+    display: inline-block;
+    border: 1px solid #eeeeee;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.order-status.ST01,
+.product-status.selling,
+.status-badge.ST01 {
+    color: #1f6f3f;
+    border-color: rgba(31, 111, 63, 0.25);
+}
+
+.order-status.ST02,
+.order-status.ST03,
+.status-badge.ST03 {
+    color: #9a6a00;
+    border-color: rgba(154, 106, 0, 0.25);
+}
+
+.order-status.ST05,
+.product-status.soldout,
+.status-badge.ST04 {
+    color: #a33;
+    border-color: rgba(170, 51, 51, 0.25);
+}
+
+.order-status.ST04 {
+    color: #1f4f8f;
+    border-color: rgba(31, 79, 143, 0.25);
+}
+
+.status-badge.ST02 {
+    color: #999999;
+    border-color: rgba(153, 153, 153, 0.25);
+}
+
+
+.admin-order-pagination,
+.admin-product-pagination,
+.admin-user-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.admin-product-pagination a,
+.admin-user-pagination a {
+    color: var(--text-main);
+}
+
+.admin-order-pagination span,
+.admin-product-pagination span,
+.admin-user-pagination span {
+    color: var(--text-muted);
+}
+
+
+@media (max-width: 1024px) {
+    .admin-category-layout,
+    .admin-order-detail-layout,
+    .admin-product-layout,
+    .admin-product-edit-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-category-page,
+    .admin-product-page,
+    .admin-product-edit-page,
+    .admin-user-page {
+        padding-top: 6.2rem;
+    }
+
+    .admin-dashboard-page {
+        padding-top: 6rem;
+    }
+
+    .admin-category-header,
+    .admin-order-header,
+    .admin-product-header,
+    .admin-product-edit-header,
+    .admin-user-header {
+        display: block;
+        padding: 1.5rem 2rem;
+    }
+
+    .admin-back-link {
+        display: inline-block;
+        margin-top: 1rem;
+    }
+
+    .admin-category-header h1,
+    .admin-dashboard-header h1,
+    .admin-product-header h1,
+    .admin-product-edit-header h1,
+    .admin-user-header h1 {
+        font-size: 2rem;
+    }
+
+    .category-list-title,
+    .product-list-title {
+        display: block;
+    }
+}

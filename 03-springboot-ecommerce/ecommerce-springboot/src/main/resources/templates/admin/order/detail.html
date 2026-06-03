@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SANG GALLERY | 주문 상세</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/common/admin-common.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/admin-order.css}">
+
+    <script th:src="@{/js/common/header.js}" defer></script>
+</head>
+<body>
+
+<div th:replace="~{common/header :: header}"></div>
+
+<main class="admin-order-page">
+
+    <section class="admin-order-header">
+        <div>
+            <p>SANG GALLERY ADMIN</p>
+            <h1>주문 상세</h1>
+            <span>주문 정보, 배송 정보, 주문 상품을 확인할 수 있습니다.</span>
+        </div>
+
+        <a th:href="@{/admin/orders}" class="admin-back-link">
+            주문 목록
+        </a>
+    </section>
+
+    <section class="admin-order-detail-layout">
+
+        <aside class="order-summary-card">
+            <h2>주문 정보</h2>
+
+            <div class="summary-row">
+                <span>주문번호</span>
+                <strong th:text="${order.nbOrder}">1</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>회원명</span>
+                <strong th:text="${order.nmUser}">회원명</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>주문자</span>
+                <strong th:text="${order.nmOrderPerson}">주문자</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>주문일시</span>
+                <strong th:text="${order.daOrder}">2026-05-16 10:00</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>주문금액</span>
+                <strong th:text="${#numbers.formatInteger(order.orderAmount, 3, 'COMMA')} + '원'">0원</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>배송주소</span>
+                <strong th:text="${order.nmDeliveryAddress}">주소</strong>
+            </div>
+
+            <form th:action="@{/admin/orders/{nbOrder}/status(nbOrder=${order.nbOrder})}"
+                  method="post"
+                  class="order-status-form">
+                <label for="stOrder">주문 상태 변경</label>
+
+                <select id="stOrder" name="stOrder">
+                    <option value="OR01" th:selected="${order.stOrder == 'OR01'}">주문완료</option>
+                    <option value="OR02" th:selected="${order.stOrder == 'OR02'}">배송준비</option>
+                    <option value="OR03" th:selected="${order.stOrder == 'OR03'}">배송중</option>
+                    <option value="OR04" th:selected="${order.stOrder == 'OR04'}">배송완료</option>
+                    <option value="OR05" th:selected="${order.stOrder == 'OR05'}">주문취소</option>
+                </select>
+
+                <button type="submit">
+                    상태 변경
+                </button>
+            </form>
+        </aside>
+
+        <section class="order-item-panel">
+            <div class="admin-order-title">
+                <h2>주문 상품</h2>
+                <span th:text="'총 ' + ${#lists.size(order.items)} + '개 상품'">
+                    총 0개 상품
+                </span>
+            </div>
+
+            <table class="admin-order-table">
+                <thead>
+                <tr>
+                    <th>이미지</th>
+                    <th>상품명</th>
+                    <th>단가</th>
+                    <th>수량</th>
+                    <th>금액</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="item : ${order.items}">
+                    <td>
+                        <div class="order-thumb">
+                            <img th:if="${item.imagePath != null}"
+                                 th:src="@{${item.imagePath}}"
+                                 th:alt="${item.nmProduct}">
+                            <span th:if="${item.imagePath == null}">NO IMAGE</span>
+                        </div>
+                    </td>
+
+                    <td th:text="${item.nmProduct}">상품명</td>
+                    <td th:text="${#numbers.formatInteger(item.unitPrice, 3, 'COMMA')} + '원'">0원</td>
+                    <td th:text="${item.quantity} + '개'">1개</td>
+                    <td th:text="${#numbers.formatInteger(item.amount, 3, 'COMMA')} + '원'">0원</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </section>
+
+</main>
+
+</body>
+</html>

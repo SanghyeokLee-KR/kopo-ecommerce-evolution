@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.shop.repository.mapper.ProductMapper">
+
+    <resultMap id="ProductListResponseMap"
+               type="kr.co.shop.dto.product.response.ProductListResponse">
+        <constructor>
+            <arg column="nbProduct" javaType="java.lang.Long"/>
+            <arg column="nmProduct" javaType="java.lang.String"/>
+            <arg column="qtPrice" javaType="java.lang.Integer"/>
+            <arg column="qtStock" javaType="java.lang.Integer"/>
+            <arg column="dtSellStart" javaType="java.lang.String"/>
+            <arg column="stProduct" javaType="java.lang.String"/>
+            <arg column="imagePath" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+
+    <sql id="productColumns">
+        p.nb_product AS nbProduct,
+        p.nm_product AS nmProduct,
+        p.qt_sale_price AS qtPrice,
+        p.qt_stock AS qtStock,
+        p.dt_start_date AS dtSellStart,
+        CASE
+        WHEN p.qt_stock IS NOT NULL AND p.qt_stock &lt;= 0 THEN 'ST02'
+        ELSE 'ST01'
+        END AS stProduct,
+        CASE
+        WHEN c.nm_save_file IS NOT NULL THEN '/files/' || c.nm_save_file
+        ELSE NULL
+        END AS imagePath
+    </sql>
+
+    <select id="findAllProducts" resultMap="ProductListResponseMap">
+        SELECT
+        <include refid="productColumns"/>
+        FROM tb_product p
+        LEFT JOIN tb_content c
+        ON p.nb_file = c.nb_file
+        ORDER BY p.nb_product DESC
+    </select>
+
+    <select id="findAdminProducts" resultMap="ProductListResponseMap">
+        SELECT
+        <include refid="productColumns"/>
+        FROM tb_product p
+        LEFT JOIN tb_content c
+        ON p.nb_file = c.nb_file
+        ORDER BY p.nb_product DESC
+        OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
+    </select>
+
+    <select id="countAdminProducts" resultType="int">
+        SELECT COUNT(*)
+        FROM tb_product
+    </select>
+
+    <select id="findDisplayProducts" resultMap="ProductListResponseMap">
+        SELECT
+        <include refid="productColumns"/>
+        FROM tb_product p
+        LEFT JOIN tb_content c
+        ON p.nb_file = c.nb_file
+        WHERE 1 = 1
+        <if test="keyword != null and keyword != ''">
+            AND (
+            p.nm_product LIKE '%' || #{keyword} || '%'
+            OR p.nm_detail_explain LIKE '%' || #{keyword} || '%'
+            )
+        </if>
+        ORDER BY p.nb_product DESC
+        OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
+    </select>
+
+    <select id="countDisplayProducts" resultType="int">
+        SELECT COUNT(*)
+        FROM tb_product p
+        WHERE 1 = 1
+        <if test="keyword != null and keyword != ''">
+            AND (
+            p.nm_product LIKE '%' || #{keyword} || '%'
+            OR p.nm_detail_explain LIKE '%' || #{keyword} || '%'
+            )
+        </if>
+    </select>
+
+    <select id="findProductsByCategory" resultMap="ProductListResponseMap">
+        SELECT DISTINCT
+        <include refid="productColumns"/>
+        FROM tb_product p
+        JOIN tb_category_product_mapping m
+        ON p.nb_product = m.nb_product
+        JOIN tb_category cat
+        ON m.nb_category = cat.nb_category
+        LEFT JOIN tb_category parent
+        ON cat.nb_parent_category = parent.nb_category
+        LEFT JOIN tb_content c
+        ON p.nb_file = c.nb_file
+        WHERE (cat.nb_category = #{nbCategory}
+        OR parent.nb_category = #{nbCategory})
+        <if test="keyword != null and keyword != ''">
+            AND (
+            p.nm_product LIKE '%' || #{keyword} || '%'
+            OR p.nm_detail_explain LIKE '%' || #{keyword} || '%'
+            )
+        </if>
+        ORDER BY p.nb_product DESC
+        OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
+    </select>
+
+    <select id="countProductsByCategory" resultType="int">
+        SELECT COUNT(DISTINCT p.nb_product)
+        FROM tb_product p
+        JOIN tb_category_product_mapping m
+        ON p.nb_product = m.nb_product
+        JOIN tb_category cat
+        ON m.nb_category = cat.nb_category
+        LEFT JOIN tb_category parent
+        ON cat.nb_parent_category = parent.nb_category
+        WHERE (cat.nb_category = #{nbCategory}
+        OR parent.nb_category = #{nbCategory})
+        <if test="keyword != null and keyword != ''">
+            AND (
+            p.nm_product LIKE '%' || #{keyword} || '%'
+            OR p.nm_detail_explain LIKE '%' || #{keyword} || '%'
+            )
+        </if>
+    </select>
+
+    <select id="findLatestProducts" resultMap="ProductListResponseMap">
+        SELECT
+        <include refid="productColumns"/>
+        FROM tb_product p
+        LEFT JOIN tb_content c
+        ON p.nb_file = c.nb_file
+        ORDER BY p.nb_product DESC
+        FETCH FIRST #{limit} ROWS ONLY
+    </select>
+
+</mapper>

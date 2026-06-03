@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.shop.repository.mapper.BasketMapper">
+
+    <resultMap id="BasketItemResponseMap"
+               type="kr.co.shop.dto.basket.response.BasketItemResponse">
+        <constructor>
+            <arg column="nbBasketItem" javaType="java.lang.Long"/>
+            <arg column="nbProduct" javaType="java.lang.Long"/>
+            <arg column="nmProduct" javaType="java.lang.String"/>
+            <arg column="imagePath" javaType="java.lang.String"/>
+            <arg column="unitPrice" javaType="java.lang.Integer"/>
+            <arg column="quantity" javaType="java.lang.Integer"/>
+            <arg column="amount" javaType="java.lang.Integer"/>
+        </constructor>
+    </resultMap>
+
+    <select id="findBasketItems" resultMap="BasketItemResponseMap">
+        SELECT
+        bi.nb_basket_item AS nbBasketItem,
+        p.nb_product AS nbProduct,
+        p.nm_product AS nmProduct,
+        CASE
+        WHEN c.nm_save_file IS NOT NULL THEN '/files/' || c.nm_save_file
+        ELSE NULL
+        END AS imagePath,
+        bi.qt_basket_item_price AS unitPrice,
+        bi.qt_basket_item AS quantity,
+        bi.qt_basket_item_amount AS amount
+        FROM tb_basket_item bi
+        JOIN tb_product p
+        ON bi.nb_product = p.nb_product
+        LEFT JOIN tb_content c
+        ON p.nb_file = c.nb_file
+        WHERE bi.nb_basket = #{nbBasket}
+        ORDER BY bi.cn_basket_item_order ASC
+    </select>
+
+</mapper>

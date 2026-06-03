@@ -1,0 +1,341 @@
+
+:root {
+    --bg-color: #ffffff;
+    --text-main: #222222;
+    --text-muted: #888888;
+    --font-main: 'Inter', 'Pretendard Variable', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--text-muted);
+}
+
+ul {
+    list-style: none;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+            background-color 0.45s ease,
+            backdrop-filter 0.45s ease,
+            border-color 0.45s ease,
+            padding 0.45s ease;
+}
+
+header.scrolled {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+}
+
+.logo {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3.5rem;
+}
+
+.nav-links li a {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    color: var(--text-main);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.header-search-toggle {
+    border: none;
+    background: transparent;
+    padding: 0;
+    font-family: var(--font-main);
+    font-size: 0.75rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.header-search-toggle:hover {
+    color: var(--text-muted);
+}
+
+.header-search-panel {
+    position: fixed;
+    top: 6.9rem;
+    right: 4rem;
+    width: 360px;
+    z-index: 90;
+
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    padding: 1rem 1.1rem;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+
+    transition:
+            opacity 0.28s ease,
+            visibility 0.28s ease,
+            transform 0.28s ease;
+}
+
+.header-search-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+header.scrolled + .header-search-panel {
+    top: 5.3rem;
+}
+
+.header-search-panel-form {
+    display: grid;
+    grid-template-columns: 1fr 28px;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.header-search-panel-form input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(34, 34, 34, 0.5);
+    background: transparent;
+
+    padding: 0.45rem 0 0.5rem;
+
+    font-family: var(--font-main);
+    font-size: 0.78rem;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--text-main);
+    outline: none;
+}
+
+.header-search-panel-form input::placeholder {
+    color: var(--text-muted);
+}
+
+.header-search-panel-form button {
+    position: relative;
+    width: 28px;
+    height: 28px;
+
+    border: none;
+    background: transparent;
+    padding: 0;
+
+    cursor: pointer;
+
+    font-size: 0;
+    color: transparent;
+}
+
+.header-search-panel-form button::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 6px;
+
+    width: 10px;
+    height: 10px;
+
+    border: 1.5px solid var(--text-main);
+    border-radius: 50%;
+}
+
+.header-search-panel-form button::after {
+    content: "";
+    position: absolute;
+    top: 17px;
+    left: 17px;
+
+    width: 7px;
+    height: 1.5px;
+
+    background-color: var(--text-main);
+    transform: rotate(45deg);
+    transform-origin: left center;
+}
+
+.header-search-panel-form button:hover::before {
+    border-color: var(--text-muted);
+}
+
+.header-search-panel-form button:hover::after {
+    background-color: var(--text-muted);
+}
+
+.hero-subtitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.04em;
+}
+
+.hero-description {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    max-width: 80%;
+    font-weight: 300;
+}
+
+.btn-outline {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background-color: var(--text-main);
+    color: #ffffff;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    color: var(--text-main);
+}
+
+@media (max-width: 1024px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-actions {
+        gap: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1.5rem 2rem;
+    }
+
+    header.scrolled {
+        padding-top: 1.2rem;
+        padding-bottom: 1.2rem;
+    }
+
+    .logo {
+        font-size: 0.95rem;
+    }
+
+    .nav-actions {
+        gap: 1rem;
+        font-size: 0.68rem;
+    }
+
+    .header-search-toggle {
+        font-size: 0.68rem;
+    }
+
+    .header-search-panel {
+        top: 5.5rem;
+        right: 2rem;
+        left: 2rem;
+        width: auto;
+        padding: 1rem;
+    }
+
+    header.scrolled + .header-search-panel {
+        top: 4.6rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 1.3rem 1.4rem;
+    }
+
+    .nav-actions {
+        gap: 0.75rem;
+    }
+
+    .header-search-panel {
+        right: 1.4rem;
+        left: 1.4rem;
+    }
+}

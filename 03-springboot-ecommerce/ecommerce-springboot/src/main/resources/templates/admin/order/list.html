@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SANG GALLERY | 주문 관리</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/common/admin-common.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/admin-order.css}">
+
+    <script th:src="@{/js/common/header.js}" defer></script>
+</head>
+<body>
+
+<div th:replace="~{common/header :: header}"></div>
+
+<main class="admin-order-page">
+
+    <section class="admin-order-header">
+        <div>
+            <p>SANG GALLERY ADMIN</p>
+            <h1>주문 관리</h1>
+            <span>전체 주문 내역과 주문 상태를 관리할 수 있습니다.</span>
+        </div>
+
+        <a th:href="@{/admin}" class="admin-back-link">
+            관리자 대시보드
+        </a>
+    </section>
+
+    <section class="admin-order-panel">
+
+        <div class="admin-order-title">
+            <h2>주문 목록</h2>
+            <span th:text="'총 ' + ${orderPage.totalElements} + '건 주문'">
+                총 0건 주문
+            </span>
+        </div>
+
+        <form class="admin-order-search" th:action="@{/admin/orders}" method="get">
+            <div class="search-field">
+                <label>시작일</label>
+                <input type="date" name="startDate" th:value="${startDate}">
+            </div>
+
+            <div class="search-field">
+                <label>종료일</label>
+                <input type="date" name="endDate" th:value="${endDate}">
+            </div>
+
+            <div class="search-field search-keyword">
+                <label>사용자 검색</label>
+                <input type="text"
+                       name="keyword"
+                       th:value="${keyword}"
+                       placeholder="주문자명 또는 회원명">
+            </div>
+
+            <div class="search-actions">
+                <button type="submit" class="btn-search">검색</button>
+                <a th:href="@{/admin/orders}" class="btn-reset">초기화</a>
+            </div>
+        </form>
+
+        <div th:if="${#lists.isEmpty(orders)}" class="empty-order">
+            등록된 주문이 없습니다.
+        </div>
+
+        <div class="admin-order-table-wrap" th:if="${!#lists.isEmpty(orders)}">
+            <table class="admin-order-table">
+                <thead>
+                <tr>
+                    <th>주문번호</th>
+                    <th>주문자</th>
+                    <th>회원</th>
+                    <th>주문일시</th>
+                    <th>주문금액</th>
+                    <th>상태</th>
+                    <th>관리</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.nbOrder}">1</td>
+                    <td th:text="${order.nmOrderPerson}">주문자</td>
+                    <td th:text="${order.nmUser}">회원명</td>
+                    <td th:text="${order.daOrder}">2026-05-16 10:00</td>
+                    <td th:text="${#numbers.formatInteger(order.orderAmount, 3, 'COMMA')} + '원'">0원</td>
+
+                    <td>
+                        <span class="order-status" th:classappend="${order.stOrder}">
+                            <span th:if="${order.stOrder == 'OR01'}">주문완료</span>
+                            <span th:if="${order.stOrder == 'OR02'}">배송준비중</span>
+                            <span th:if="${order.stOrder == 'OR03'}">배송중</span>
+                            <span th:if="${order.stOrder == 'OR04'}">배송완료</span>
+
+                        <span th:if="${order.stOrder != 'OR01'
+                                    and order.stOrder != 'OR02'
+                                    and order.stOrder != 'OR03'
+                                    and order.stOrder != 'OR04'}"
+                              th:text="${order.stOrder}">OR01
+                        </span>
+                      </span>
+                    </td>
+
+                    <td>
+                        <a th:href="@{/admin/orders/{nbOrder}(nbOrder=${order.nbOrder})}"
+                           class="order-detail-link">
+                            상세
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="admin-order-pagination"
+                 th:if="${orderPage.totalPages > 0}">
+
+                <a th:if="${orderPage.hasPrevious()}"
+                   th:href="@{/admin/orders(page=${orderPage.number - 1}, startDate=${startDate}, endDate=${endDate}, keyword=${keyword})}">
+                    Prev
+                </a>
+
+                <span th:text="${orderPage.number + 1} + ' / ' + ${orderPage.totalPages}">
+                    1 / 1
+                </span>
+
+                <a th:if="${orderPage.hasNext()}"
+                   th:href="@{/admin/orders(page=${orderPage.number + 1}, startDate=${startDate}, endDate=${endDate}, keyword=${keyword})}">
+                    Next
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>

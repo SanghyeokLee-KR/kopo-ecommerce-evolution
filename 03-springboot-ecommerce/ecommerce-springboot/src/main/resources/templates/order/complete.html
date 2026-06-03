@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SANG GALLERY | 주문 성공</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/order/order.css}">
+
+    <script th:src="@{/js/common/header.js}" defer></script>
+</head>
+<body>
+
+<div th:replace="~{common/header :: header}"></div>
+
+<main class="order-complete-page">
+    <section class="order-complete-header">
+        <p class="order-subtitle">SANG GALLERY</p>
+        <h1>ORDER COMPLETE</h1>
+        <p>주문이 정상적으로 완료되었습니다.</p>
+    </section>
+
+    <section class="order-complete-layout">
+
+        <div class="order-info-box">
+            <h2>ORDER INFORMATION</h2>
+
+            <div class="order-info-row">
+                <span>주문 번호</span>
+                <strong th:text="${order.nbOrder}">1</strong>
+            </div>
+
+            <div class="order-info-row">
+                <span>주문자</span>
+                <strong th:text="${order.nmOrderPerson}">홍길동</strong>
+            </div>
+
+            <div class="order-info-row">
+                <span>주문 일시</span>
+                <strong th:text="${order.daOrder}">2026-05-16 12:00</strong>
+            </div>
+
+            <div class="order-info-row">
+                <span>주문 상태</span>
+
+                <strong th:if="${order.stOrder == 'OR01'}">주문완료</strong>
+                <strong th:if="${order.stOrder == 'OR02'}">배송준비중</strong>
+                <strong th:if="${order.stOrder == 'OR03'}">배송중</strong>
+                <strong th:if="${order.stOrder == 'OR04'}">배송완료</strong>
+
+                <strong th:if="${order.stOrder != 'OR01'
+                    and order.stOrder != 'OR02'
+                    and order.stOrder != 'OR03'
+                    and order.stOrder != 'OR04'}"
+                        th:text="${order.stOrder}">
+                    OR01
+                </strong>
+            </div>
+
+            <div class="order-info-row total">
+                <span>총 주문 금액</span>
+                <strong th:text="${#numbers.formatInteger(order.orderAmount, 3, 'COMMA')} + '원'">
+                    0원
+                </strong>
+            </div>
+        </div>
+
+        <div class="order-item-list">
+            <h2>ORDER ITEMS</h2>
+
+            <article class="order-item"
+                     th:each="item : ${order.items}">
+
+                <a class="order-item-image"
+                   th:href="@{/products/{nbProduct}(nbProduct=${item.nbProduct})}">
+                    <img th:if="${item.imagePath != null}"
+                         th:src="@{${item.imagePath}}"
+                         th:alt="${item.nmProduct}">
+
+                    <div th:if="${item.imagePath == null}" class="no-image">
+                        NO IMAGE
+                    </div>
+                </a>
+
+                <div class="order-item-info">
+                    <a th:href="@{/products/{nbProduct}(nbProduct=${item.nbProduct})}"
+                       th:text="${item.nmProduct}">
+                        상품명
+                    </a>
+
+                    <p>
+                        <span th:text="${#numbers.formatInteger(item.unitPrice, 3, 'COMMA')} + '원'">
+                            0원
+                        </span>
+                        <span> × </span>
+                        <span th:text="${item.quantity} + '개'">1개</span>
+                    </p>
+                </div>
+
+                <div class="order-item-amount">
+                    <p th:text="${#numbers.formatInteger(item.amount, 3, 'COMMA')} + '원'">
+                        0원
+                    </p>
+                </div>
+            </article>
+        </div>
+
+        <div class="order-actions">
+            <a th:href="@{/products}" class="btn-outline-order">
+                쇼핑 계속하기
+            </a>
+
+            <a th:href="@{/users/mypage}" class="btn-dark-order">
+                마이페이지
+            </a>
+        </div>
+
+    </section>
+</main>
+
+</body>
+</html>

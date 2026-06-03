@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SANG GALLERY | 주문</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/order/order.css}">
+    <script th:src="@{/js/common/header.js}" defer></script>
+</head>
+<body>
+
+<div th:replace="~{common/header :: header}"></div>
+
+<main class="order-complete-page">
+    <section class="order-complete-header">
+        <p class="order-subtitle">SANG GALLERY</p>
+        <h1>MY ORDERS</h1>
+        <p>주문 내역을 확인할 수 있습니다.</p>
+    </section>
+
+    <section class="order-complete-layout">
+        <p th:if="${#lists.isEmpty(orders)}" class="empty-message">
+            주문 내역이 없습니다.
+        </p>
+
+        <div class="order-info-box"
+             th:each="order : ${orders}">
+            <div class="order-info-row">
+                <span>주문 번호</span>
+                <strong th:text="${order.nbOrder}">1</strong>
+            </div>
+
+            <div class="order-info-row">
+                <span>주문 일시</span>
+                <strong th:text="${order.daOrder}">2026-05-16 12:00</strong>
+            </div>
+
+            <div class="order-info-row">
+                <span>주문 상태</span>
+
+                <strong th:if="${order.stOrder == 'OR01'}">주문완료</strong>
+                <strong th:if="${order.stOrder == 'OR02'}">배송준비중</strong>
+                <strong th:if="${order.stOrder == 'OR03'}">배송중</strong>
+                <strong th:if="${order.stOrder == 'OR04'}">배송완료</strong>
+
+                <strong th:if="${order.stOrder != 'OR01'
+                    and order.stOrder != 'OR02'
+                    and order.stOrder != 'OR03'
+                    and order.stOrder != 'OR04'}"
+                        th:text="${order.stOrder}">
+                    OR01
+                </strong>
+            </div>
+
+            <div class="order-info-row total">
+                <span>주문 금액</span>
+                <strong th:text="${#numbers.formatInteger(order.orderAmount, 3, 'COMMA')} + '원'">
+                    0원
+                </strong>
+            </div>
+
+            <a th:href="@{/orders/{nbOrder}(nbOrder=${order.nbOrder})}"
+               class="continue-link">
+                상세 보기
+            </a>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

@@ -15,7 +15,7 @@ kopo-ecommerce-evolution/
 ├── 01-java-json-ecommerce/
 ├── 02-java-jdbc-ecommerce/
 └── 03-springboot-ecommerce/
-    └── eCommerce-springboot/
+    └── ecommerce-springboot/
 ```
 
 ## 기술 발전 과정
@@ -25,7 +25,7 @@ JSON File
    ↓
 JDBC + Oracle Database
    ↓
-Spring Boot + JPA + MyBatis + Security
+Spring Boot + JPA + MyBatis (Thymeleaf · Session)
 ```
 
 ## 작성자

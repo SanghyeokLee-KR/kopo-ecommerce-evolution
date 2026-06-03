@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.shop.repository.mapper.UserMapper">
+
+    <resultMap id="UserListResponseMap"
+               type="kr.co.shop.dto.user.response.UserListResponse">
+        <constructor>
+            <arg column="nbUser" javaType="java.lang.Long"/>
+            <arg column="idUser" javaType="java.lang.String"/>
+            <arg column="nmUser" javaType="java.lang.String"/>
+            <arg column="noMobile" javaType="java.lang.String"/>
+            <arg column="nmEmail" javaType="java.lang.String"/>
+            <arg column="stStatus" javaType="java.lang.String"/>
+            <arg column="cdUserType" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+
+    <select id="findUsers" resultMap="UserListResponseMap">
+        SELECT
+        u.nb_user AS nbUser,
+        u.id_user AS idUser,
+        u.nm_user AS nmUser,
+        u.no_mobile AS noMobile,
+        u.nm_email AS nmEmail,
+        u.st_status AS stStatus,
+        u.cd_user_type AS cdUserType
+        FROM tb_user u
+        WHERE 1 = 1
+        <if test="stStatus != null and stStatus != ''">
+            AND u.st_status = #{stStatus}
+        </if>
+        ORDER BY u.nb_user DESC
+        OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
+    </select>
+
+    <select id="countUsers" resultType="int">
+        SELECT COUNT(*)
+        FROM tb_user u
+        WHERE 1 = 1
+        <if test="stStatus != null and stStatus != ''">
+            AND u.st_status = #{stStatus}
+        </if>
+    </select>
+
+</mapper>

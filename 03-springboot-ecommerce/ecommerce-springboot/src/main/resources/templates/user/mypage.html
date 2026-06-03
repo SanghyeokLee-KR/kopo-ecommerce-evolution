@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SANG GALLERY | 마이페이지</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/user/mypage.css}">
+
+    <script th:src="@{/js/common/header.js}" defer></script>
+</head>
+<body>
+
+<div th:replace="~{common/header :: header}"></div>
+
+<main class="mypage">
+    <section class="mypage-header">
+        <p>MY PAGE</p>
+        <h1>마이페이지</h1>
+    </section>
+
+    <section class="mypage-box">
+
+        <p th:if="${errorMessage != null}"
+           th:text="${errorMessage}"
+           style="color: #a33; margin-bottom: 1rem;">
+            오류 메시지
+        </p>
+
+        <div class="mypage-row">
+            <span>아이디</span>
+            <strong th:text="${myPage.idUser}">user01</strong>
+        </div>
+
+        <div class="mypage-row">
+            <span>이름</span>
+            <strong th:text="${myPage.nmUser}">홍길동</strong>
+        </div>
+
+        <div class="mypage-row">
+            <span>휴대전화</span>
+            <strong th:text="${myPage.noMobile}">010-0000-0000</strong>
+        </div>
+
+        <div class="mypage-row">
+            <span>이메일</span>
+            <strong th:text="${myPage.nmEmail}">test@test.com</strong>
+        </div>
+
+        <div class="mypage-actions">
+            <a th:href="@{/orders}" class="btn-dark">
+                주문 내역 보기
+            </a>
+
+            <a th:href="@{/users/edit}" class="btn-outline">
+                회원정보 수정
+            </a>
+
+            <form th:action="@{/users/withdraw}" method="post">
+                <button type="submit"
+                        class="btn-danger"
+                        onclick="return confirm('회원 탈퇴를 요청하시겠습니까?');">
+                    회원 탈퇴 요청
+                </button>
+            </form>
+        </div>
+
+        <div class="password-change-box">
+            <h2>비밀번호 변경</h2>
+
+            <form th:action="@{/users/password}" method="post">
+                <input type="password"
+                       name="currentPassword"
+                       placeholder="현재 비밀번호"
+                       required>
+
+                <input type="password"
+                       name="newPassword"
+                       placeholder="새 비밀번호"
+                       required>
+
+                <input type="password"
+                       name="confirmPassword"
+                       placeholder="새 비밀번호 확인"
+                       required>
+
+                <button type="submit" class="btn-outline">
+                    비밀번호 변경
+                </button>
+            </form>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

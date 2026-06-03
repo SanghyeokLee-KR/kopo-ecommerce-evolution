@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SANG GALLERY | SHOP</title>
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/common/common.css}">
+    <link rel="stylesheet" th:href="@{/css/product/product-common.css}">
+    <link rel="stylesheet" th:href="@{/css/product/product-list.css}">
+
+    <script th:src="@{/js/common/header.js}" defer></script>
+</head>
+<body>
+
+<div th:replace="~{common/header :: header}"></div>
+
+<main class="product-page">
+    <div class="product-list-layout">
+
+        <aside class="category-sidebar">
+            <div class="category-group"
+                 th:each="parent : ${categories}"
+                 th:if="${parent.nbParentCategory == null}">
+
+                <a th:href="@{/products(nbCategory=${parent.nbCategory}, keyword=${keyword})}"
+                   class="parent-category"
+                   th:classappend="${selectedCategory == parent.nbCategory} ? ' active' : ''"
+                   th:text="${parent.nmCategory}">
+                    대분류
+                </a>
+
+                <div class="child-category-list">
+                    <a th:each="child : ${categories}"
+                       th:if="${child.nbParentCategory == parent.nbCategory}"
+                       th:href="@{/products(nbCategory=${child.nbCategory}, keyword=${keyword})}"
+                       th:classappend="${selectedCategory == child.nbCategory} ? ' active' : ''"
+                       th:text="${child.nmCategory}">
+                        중분류
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <section class="product-list-section">
+
+            <form th:action="@{/products}" method="get" class="product-search-form">
+                <input type="hidden"
+                       name="nbCategory"
+                       th:if="${selectedCategory != null}"
+                       th:value="${selectedCategory}">
+
+                <input type="text"
+                       name="keyword"
+                       th:value="${keyword}"
+                       placeholder="상품명 또는 설명 검색">
+
+                <button type="submit">SEARCH</button>
+            </form>
+
+            <div class="product-grid">
+                <a th:each="product : ${products}"
+                   th:href="@{/products/{nbProduct}(nbProduct=${product.nbProduct})}"
+                   class="product-card">
+
+                    <div class="product-image-box">
+                        <img th:if="${product.imagePath != null}"
+                             th:src="@{${product.imagePath}}"
+                             th:alt="${product.nmProduct}">
+
+                        <div th:if="${product.imagePath == null}"
+                             class="no-image">
+                            NO IMAGE
+                        </div>
+                    </div>
+
+                    <div class="product-card-info">
+                        <p class="product-category">
+                            SANG GALLERY
+                        </p>
+
+                        <h2 th:text="${product.nmProduct}">
+                            상품명
+                        </h2>
+
+                        <p class="product-description">
+                            Photography Artwork
+                        </p>
+
+                        <p class="product-price"
+                           th:text="${#numbers.formatInteger(product.qtPrice, 3, 'COMMA')} + '원'">
+                            0원
+                        </p>
+
+                        <p class="soldout-badge"
+                           th:if="${product.qtStock != null and product.qtStock <= 0}">
+                            SOLD OUT
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <p th:if="${#lists.isEmpty(products)}"
+               class="empty-message">
+                검색 결과가 없습니다.
+            </p>
+
+            <div class="pagination"
+                 th:if="${productPage.totalPages > 0}">
+
+                <a th:if="${productPage.hasPrevious()}"
+                   th:href="@{/products(
+                        page=${productPage.number - 1},
+                        nbCategory=${selectedCategory},
+                        keyword=${keyword}
+                   )}">
+                    Prev
+                </a>
+
+                <span th:text="${productPage.number + 1} + ' / ' + ${productPage.totalPages}">
+                    1 / 1
+                </span>
+
+                <a th:if="${productPage.hasNext()}"
+                   th:href="@{/products(
+                        page=${productPage.number + 1},
+                        nbCategory=${selectedCategory},
+                        keyword=${keyword}
+                   )}">
+                    Next
+                </a>
+            </div>
+
+        </section>
+
+    </div>
+</main>
+
+</body>
+</html>

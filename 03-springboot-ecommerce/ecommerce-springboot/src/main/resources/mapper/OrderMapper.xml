@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.shop.repository.mapper.OrderMapper">
+
+    <resultMap id="OrderListResponseMap"
+               type="kr.co.shop.dto.order.response.OrderListResponse">
+        <constructor>
+            <arg column="nbOrder" javaType="java.lang.Long"/>
+            <arg column="daOrder" javaType="java.lang.String"/>
+            <arg column="stOrder" javaType="java.lang.String"/>
+            <arg column="orderAmount" javaType="java.lang.Integer"/>
+        </constructor>
+    </resultMap>
+
+    <resultMap id="OrderDetailResponseMap"
+               type="kr.co.shop.dto.order.response.OrderDetailResponse">
+        <constructor>
+            <arg column="nbOrder" javaType="java.lang.Long"/>
+            <arg column="nmOrderPerson" javaType="java.lang.String"/>
+            <arg column="nmDeliveryAddress" javaType="java.lang.String"/>
+            <arg column="daOrder" javaType="java.lang.String"/>
+            <arg column="stOrder" javaType="java.lang.String"/>
+            <arg column="orderAmount" javaType="java.lang.Integer"/>
+            <arg column="nbOrder" javaType="java.util.List" select="findMyOrderItems"/>
+        </constructor>
+    </resultMap>
+
+    <resultMap id="OrderItemResponseMap"
+               type="kr.co.shop.dto.order.response.OrderItemResponse">
+        <constructor>
+            <arg column="nbProduct" javaType="java.lang.Long"/>
+            <arg column="nmProduct" javaType="java.lang.String"/>
+            <arg column="imagePath" javaType="java.lang.String"/>
+            <arg column="unitPrice" javaType="java.lang.Integer"/>
+            <arg column="quantity" javaType="java.lang.Integer"/>
+            <arg column="amount" javaType="java.lang.Integer"/>
+        </constructor>
+    </resultMap>
+
+    <resultMap id="AdminOrderListResponseMap"
+               type="kr.co.shop.dto.admin.response.AdminOrderListResponse">
+        <constructor>
+            <arg column="nbOrder" javaType="java.lang.Long"/>
+            <arg column="nbUser" javaType="java.lang.Long"/>
+            <arg column="nmUser" javaType="java.lang.String"/>
+            <arg column="nmOrderPerson" javaType="java.lang.String"/>
+            <arg column="daOrder" javaType="java.lang.String"/>
+            <arg column="stOrder" javaType="java.lang.String"/>
+            <arg column="orderAmount" javaType="java.lang.Integer"/>
+        </constructor>
+    </resultMap>
+
+    <resultMap id="AdminOrderDetailResponseMap"
+               type="kr.co.shop.dto.admin.response.AdminOrderDetailResponse">
+        <constructor>
+            <arg column="nbOrder" javaType="java.lang.Long"/>
+            <arg column="nbUser" javaType="java.lang.Long"/>
+            <arg column="nmUser" javaType="java.lang.String"/>
+            <arg column="nmOrderPerson" javaType="java.lang.String"/>
+            <arg column="nmDeliveryAddress" javaType="java.lang.String"/>
+            <arg column="daOrder" javaType="java.lang.String"/>
+            <arg column="stOrder" javaType="java.lang.String"/>
+            <arg column="orderAmount" javaType="java.lang.Integer"/>
+            <arg column="nbOrder" javaType="java.util.List" select="findAdminOrderItems"/>
+        </constructor>
+    </resultMap>
+
+    <resultMap id="AdminOrderItemResponseMap"
+               type="kr.co.shop.dto.admin.response.AdminOrderItemResponse">
+        <constructor>
+            <arg column="nbProduct" javaType="java.lang.Long"/>
+            <arg column="nmProduct" javaType="java.lang.String"/>
+            <arg column="imagePath" javaType="java.lang.String"/>
+            <arg column="unitPrice" javaType="java.lang.Integer"/>
+            <arg column="quantity" javaType="java.lang.Integer"/>
+            <arg column="amount" javaType="java.lang.Integer"/>
+        </constructor>
+    </resultMap>
+
+    <select id="findMyOrders" resultMap="OrderListResponseMap">
+        SELECT
+        o.nb_order AS nbOrder,
+        TO_CHAR(o.da_order, 'YYYY-MM-DD HH24:MI') AS daOrder,
+        o.st_order AS stOrder,
+        o.qt_order_amount AS orderAmount
+        FROM tb_order o
+        WHERE o.nb_user = #{nbUser}
+        ORDER BY o.nb_order DESC
+    </select>
+
+    <select id="findMyOrderDetail" resultMap="OrderDetailResponseMap">
+        SELECT
+        o.nb_order AS nbOrder,
+        o.nm_order_person AS nmOrderPerson,
+        o.nm_delivery_address AS nmDeliveryAddress,
+        TO_CHAR(o.da_order, 'YYYY-MM-DD HH24:MI') AS daOrder,
+        o.st_order AS stOrder,
+        o.qt_order_amount AS orderAmount
+        FROM tb_order o
+        WHERE o.nb_order = #{nbOrder}
+        AND o.nb_user = #{nbUser}
+    </select>
+
+    <select id="findMyOrderItems" resultMap="OrderItemResponseMap">
+        SELECT
+        p.nb_product AS nbProduct,
+        p.nm_product AS nmProduct,
+        CASE
+        WHEN c.nm_save_file IS NOT NULL THEN '/files/' || c.nm_save_file
+        ELSE NULL
+        END AS imagePath,
+        oi.qt_unit_price AS unitPrice,
+        oi.qt_order_item AS quantity,
+        oi.qt_unit_price * oi.qt_order_item AS amount
+        FROM tb_order_item oi
+        JOIN tb_product p
+        ON oi.nb_product = p.nb_product
+        LEFT JOIN tb_content c
+        ON p.nb_file = c.nb_file
+        WHERE oi.nb_order = #{nbOrder}
+        ORDER BY oi.cn_order_item ASC
+    </select>
+
+    <select id="findAllOrders" resultMap="AdminOrderListResponseMap">
+        SELECT
+        o.nb_order AS nbOrder,
+        u.nb_user AS nbUser,
+        u.nm_user AS nmUser,
+        o.nm_order_person AS nmOrderPerson,
+        TO_CHAR(o.da_order, 'YYYY-MM-DD HH24:MI') AS daOrder,
+        o.st_order AS stOrder,
+        o.qt_order_amount AS orderAmount
+        FROM tb_order o
+        JOIN tb_user u
+        ON o.nb_user = u.nb_user
+        WHERE 1 = 1
+        <if test="startDate != null and startDate != ''">
+            AND TRUNC(o.da_order) &gt;= TO_DATE(#{startDate}, 'YYYY-MM-DD')
+        </if>
+        <if test="endDate != null and endDate != ''">
+            AND TRUNC(o.da_order) &lt;= TO_DATE(#{endDate}, 'YYYY-MM-DD')
+        </if>
+        <if test="keyword != null and keyword != ''">
+            AND (
+            o.nm_order_person LIKE '%' || #{keyword} || '%'
+            OR u.nm_user LIKE '%' || #{keyword} || '%'
+            )
+        </if>
+        ORDER BY o.nb_order DESC
+        OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
+    </select>
+
+    <select id="countAllOrders" resultType="int">
+        SELECT COUNT(*)
+        FROM tb_order o
+        JOIN tb_user u
+        ON o.nb_user = u.nb_user
+        WHERE 1 = 1
+        <if test="startDate != null and startDate != ''">
+            AND TRUNC(o.da_order) &gt;= TO_DATE(#{startDate}, 'YYYY-MM-DD')
+        </if>
+        <if test="endDate != null and endDate != ''">
+            AND TRUNC(o.da_order) &lt;= TO_DATE(#{endDate}, 'YYYY-MM-DD')
+        </if>
+        <if test="keyword != null and keyword != ''">
+            AND (
+            o.nm_order_person LIKE '%' || #{keyword} || '%'
+            OR u.nm_user LIKE '%' || #{keyword} || '%'
+            )
+        </if>
+    </select>
+
+    <select id="findAdminOrderDetail" resultMap="AdminOrderDetailResponseMap">
+        SELECT
+        o.nb_order AS nbOrder,
+        u.nb_user AS nbUser,
+        u.nm_user AS nmUser,
+        o.nm_order_person AS nmOrderPerson,
+        o.nm_delivery_address AS nmDeliveryAddress,
+        TO_CHAR(o.da_order, 'YYYY-MM-DD HH24:MI') AS daOrder,
+        o.st_order AS stOrder,
+        o.qt_order_amount AS orderAmount
+        FROM tb_order o
+        JOIN tb_user u
+        ON o.nb_user = u.nb_user
+        WHERE o.nb_order = #{nbOrder}
+    </select>
+
+    <select id="findAdminOrderItems" resultMap="AdminOrderItemResponseMap">
+        SELECT
+        p.nb_product AS nbProduct,
+        p.nm_product AS nmProduct,
+        CASE
+        WHEN c.nm_save_file IS NOT NULL THEN '/files/' || c.nm_save_file
+        ELSE NULL
+        END AS imagePath,
+        oi.qt_unit_price AS unitPrice,
+        oi.qt_order_item AS quantity,
+        oi.qt_unit_price * oi.qt_order_item AS amount
+        FROM tb_order_item oi
+        JOIN tb_product p
+        ON oi.nb_product = p.nb_product
+        LEFT JOIN tb_content c
+        ON p.nb_file = c.nb_file
+        WHERE oi.nb_order = #{nbOrder}
+        ORDER BY oi.cn_order_item ASC
+    </select>
+
+</mapper>

@@ -1,0 +1,113 @@
+.server-error-message {
+    margin: -4px 0 16px;
+    padding: 11px 13px;
+    border: 1px solid rgba(229, 57, 53, 0.25);
+    background: rgba(229, 57, 53, 0.04);
+    color: var(--error);
+    font-size: 12px;
+    line-height: 1.45;
+    letter-spacing: -0.2px;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -2px;
+    margin-bottom: 28px;
+}
+
+.forgot-pw {
+    font-size: 12px;
+    color: var(--mid-gray);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.forgot-pw:hover {
+    color: var(--black);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 32px 0;
+    color: #aaaaaa;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--line);
+}
+
+.divider::before {
+    margin-right: 16px;
+}
+
+.divider::after {
+    margin-left: 16px;
+}
+
+.social-login {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-social {
+    flex: 1;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--line);
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500; /* 수정: 700 -> 500 */
+    transition:
+            border-color 0.24s ease,
+            background-color 0.24s ease,
+            transform 0.18s ease,
+            box-shadow 0.24s ease;
+}
+
+.btn-social:hover {
+    border-color: var(--black);
+    background: var(--soft-gray);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+}
+
+.btn-social:active {
+    transform: translateY(0);
+}
+
+.social-notice {
+    min-height: 16px;
+    margin-top: 12px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: var(--mid-gray);
+    text-align: center;
+}
+
+@media (max-width: 520px) {
+    .form-options {
+        gap: 16px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .social-login {
+        flex-direction: column;
+    }
+}
