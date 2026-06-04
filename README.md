@@ -10,9 +10,9 @@
 
 | 단계 | 프로젝트 | 핵심 내용 | 바로가기 |
 |:--:|:--|:--|:--:|
-| **1** | 파일 기반 콘솔 쇼핑몰 | Java 21 · JSON(Jackson) 저장 · controller / service / repository 계층 | [살펴보기 →](01-java-json-ecommerce/README.md) |
-| **2** | JDBC 리팩터링 (DB 이전) | JDBC · Oracle · 트랜잭션 · N+1을 JOIN으로 · Builder | [살펴보기 →](02-java-jdbc-ecommerce/README.md) |
-| **3** | Spring Boot 웹 애플리케이션 | Spring MVC · JPA + MyBatis · Thymeleaf · 세션 인증 · 관리자 | [살펴보기 →](03-springboot-ecommerce/README.md) |
+| **1** | 파일 기반 콘솔 쇼핑몰 | Java 21 · JSON(Jackson) 저장 · controller / service / repository 계층 | [살펴보기](01-java-json-ecommerce/README.md) |
+| **2** | JDBC 리팩터링 (DB 이전) | JDBC · Oracle · 트랜잭션 · N+1을 JOIN으로 · Builder | [살펴보기](02-java-jdbc-ecommerce/README.md) |
+| **3** | Spring Boot 웹 애플리케이션 | Spring MVC · JPA + MyBatis · Thymeleaf · 세션 인증 · 관리자 | [살펴보기](03-springboot-ecommerce/README.md) |
 
 ```text
 1. JSON 파일 (콘솔)  →  2. JDBC + Oracle (콘솔)  →  3. Spring Boot · JPA+MyBatis (웹)
